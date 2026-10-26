@@ -1,0 +1,29 @@
+{
+  "training_seed": 1668,
+  "checkpoints": {
+    "no_baseline": [
+      5120,
+      6400,
+      6912,
+      8000
+    ],
+    "baseline": [
+      3072,
+      6144,
+      6912,
+      8000
+    ]
+  },
+  "evaluation_episodes_per_checkpoint": 500,
+  "frozen_control_episodes": 2000,
+  "evaluation_reset_base": 9400000,
+  "evaluation_action_base": 34000000,
+  "control_reset_base": 9500000,
+  "control_action_base": 35000000,
+  "bootstrap_replicates": 5000,
+  "selection": "Exploratory: checkpoints chosen from the already observed training logs, before any new evaluation outcomes.",
+  "hypothesis": "If the dip is only fixed-policy episode noise, held-out means at before/during checkpoints should not show a large change. A frozen high-performing policy supplies a sampling-only comparison.",
+  "original_files_modified": false,
+  "device": "cpu",
+  "gpus_used": 0
+}

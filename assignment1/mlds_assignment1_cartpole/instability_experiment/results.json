@@ -1,0 +1,215 @@
+{
+  "plan": {
+    "training_seed": 1668,
+    "checkpoints": {
+      "no_baseline": [
+        5120,
+        6400,
+        6912,
+        8000
+      ],
+      "baseline": [
+        3072,
+        6144,
+        6912,
+        8000
+      ]
+    },
+    "evaluation_episodes_per_checkpoint": 500,
+    "frozen_control_episodes": 2000,
+    "evaluation_reset_base": 9400000,
+    "evaluation_action_base": 34000000,
+    "control_reset_base": 9500000,
+    "control_action_base": 35000000,
+    "bootstrap_replicates": 5000,
+    "selection": "Exploratory: checkpoints chosen from the already observed training logs, before any new evaluation outcomes.",
+    "hypothesis": "If the dip is only fixed-policy episode noise, held-out means at before/during checkpoints should not show a large change. A frozen high-performing policy supplies a sampling-only comparison.",
+    "original_files_modified": false,
+    "device": "cpu",
+    "gpus_used": 0
+  },
+  "methods": {
+    "no_baseline": {
+      "replay": {
+        "all_8000_rewards_identical": true,
+        "number_different_rewards": 0,
+        "final_weights_identical": true,
+        "final_weight_hash": "ded640c62876435a488a2d5aff90d1dc08f9a09c892d213090cd62ec9efa770e",
+        "original_weight_hash": "ded640c62876435a488a2d5aff90d1dc08f9a09c892d213090cd62ec9efa770e",
+        "seconds": 20.775908026844263
+      },
+      "checkpoints": {
+        "5120": {
+          "mean": 453.108,
+          "sd": 85.80981491647677,
+          "mean_bootstrap_95ci": [
+            445.4619,
+            460.27
+          ],
+          "min": 148.0,
+          "max": 500.0,
+          "count": 500,
+          "fraction_at_500": 0.678
+        },
+        "6400": {
+          "mean": 83.114,
+          "sd": 28.96385685643402,
+          "mean_bootstrap_95ci": [
+            80.592,
+            85.60235
+          ],
+          "min": 29.0,
+          "max": 128.0,
+          "count": 500,
+          "fraction_at_500": 0.0
+        },
+        "6912": {
+          "mean": 401.706,
+          "sd": 121.59858372530496,
+          "mean_bootstrap_95ci": [
+            391.204,
+            411.99615
+          ],
+          "min": 104.0,
+          "max": 500.0,
+          "count": 500,
+          "fraction_at_500": 0.5
+        },
+        "8000": {
+          "mean": 500.0,
+          "sd": 0.0,
+          "mean_bootstrap_95ci": [
+            500.0,
+            500.0
+          ],
+          "min": 500.0,
+          "max": 500.0,
+          "count": 500,
+          "fraction_at_500": 1.0
+        }
+      },
+      "paired_comparisons": {
+        "during_minus_before": {
+          "mean_difference": -369.994,
+          "paired_standard_error": 3.9590554641652433,
+          "paired_bootstrap_95ci": [
+            -377.4302,
+            -362.0378
+          ],
+          "pairs": 500
+        },
+        "final_minus_during": {
+          "mean_difference": 416.886,
+          "paired_standard_error": 1.2966003056861473,
+          "paired_bootstrap_95ci": [
+            414.358,
+            419.45805
+          ],
+          "pairs": 500
+        }
+      },
+      "frozen_control": {
+        "snapshot_training_episodes": 5120,
+        "episodes": 2000,
+        "mean": 451.0655,
+        "sd": 87.11684228523208,
+        "frozen_100episode_mean_min": 430.11,
+        "frozen_100episode_mean_max": 472.2900000000001,
+        "continued_training_100episode_mean_min": 74.64,
+        "continued_training_100episode_mean_max": 446.83,
+        "comparison": "Same policy frozen throughout control; fresh independent seeds. Continued-training series uses original subsequent 2000 episodes. Rolling windows overlap; their range is descriptive, not a p-value."
+      }
+    },
+    "baseline": {
+      "replay": {
+        "all_8000_rewards_identical": true,
+        "number_different_rewards": 0,
+        "final_weights_identical": true,
+        "final_weight_hash": "463adc72cdb7ca0b1d1208feeb260b3418e0622f05331bd99b619b17facb1427",
+        "original_weight_hash": "463adc72cdb7ca0b1d1208feeb260b3418e0622f05331bd99b619b17facb1427",
+        "seconds": 24.654780582059175
+      },
+      "checkpoints": {
+        "3072": {
+          "mean": 440.466,
+          "sd": 76.27555862791172,
+          "mean_bootstrap_95ci": [
+            433.49925,
+            447.11015000000003
+          ],
+          "min": 140.0,
+          "max": 500.0,
+          "count": 500,
+          "fraction_at_500": 0.472
+        },
+        "6144": {
+          "mean": 215.686,
+          "sd": 33.300081141042284,
+          "mean_bootstrap_95ci": [
+            212.85785,
+            218.64215
+          ],
+          "min": 87.0,
+          "max": 350.0,
+          "count": 500,
+          "fraction_at_500": 0.0
+        },
+        "6912": {
+          "mean": 298.66,
+          "sd": 57.33198409265111,
+          "mean_bootstrap_95ci": [
+            293.72375,
+            303.61245
+          ],
+          "min": 86.0,
+          "max": 500.0,
+          "count": 500,
+          "fraction_at_500": 0.002
+        },
+        "8000": {
+          "mean": 257.564,
+          "sd": 52.501522873151025,
+          "mean_bootstrap_95ci": [
+            252.95195,
+            262.30645
+          ],
+          "min": 87.0,
+          "max": 472.0,
+          "count": 500,
+          "fraction_at_500": 0.0
+        }
+      },
+      "paired_comparisons": {
+        "during_minus_before": {
+          "mean_difference": -224.78,
+          "paired_standard_error": 3.7185877682233017,
+          "paired_bootstrap_95ci": [
+            -231.88604999999998,
+            -217.43570000000003
+          ],
+          "pairs": 500
+        },
+        "final_minus_during": {
+          "mean_difference": 41.878,
+          "paired_standard_error": 1.8057218764222747,
+          "paired_bootstrap_95ci": [
+            38.34195,
+            45.4
+          ],
+          "pairs": 500
+        }
+      },
+      "frozen_control": {
+        "snapshot_training_episodes": 3072,
+        "episodes": 2000,
+        "mean": 436.5245,
+        "sd": 80.997551813311,
+        "frozen_100episode_mean_min": 412.99999999999994,
+        "frozen_100episode_mean_max": 453.82000000000005,
+        "continued_training_100episode_mean_min": 211.37,
+        "continued_training_100episode_mean_max": 467.14,
+        "comparison": "Same policy frozen throughout control; fresh independent seeds. Continued-training series uses original subsequent 2000 episodes. Rolling windows overlap; their range is descriptive, not a p-value."
+      }
+    }
+  }
+}
