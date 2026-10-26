@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+*.aux
+*.out
+*.log
+*.xdv
+*.tmp
+*.pid
+*.lock
+.DS_Store

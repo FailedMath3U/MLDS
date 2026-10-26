@@ -1,0 +1,7 @@
+{
+  "checkpoint": "final.pt",
+  "training_episodes": 20000,
+  "selection_used_test_scores": false,
+  "evaluation_mean": -18.61,
+  "population_std": 1.681041343929411
+}

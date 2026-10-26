@@ -1,0 +1,14 @@
+{
+  "training_episodes": 16384,
+  "model_hash": "fd179dbf7dd171591245fbec3e835c856a34a489c897f8a31eb960670aed33f6",
+  "test_trajectories": 16,
+  "baseline_fitting_trajectories": 0,
+  "baseline_used": 0.08979933389502838,
+  "gradient_variance_no_baseline": 118.85604441569419,
+  "gradient_variance_with_baseline": 120.18435922900775,
+  "variance_ratio": 1.011175828876383,
+  "mean_gradient_difference_norm": 0.22700504445802075,
+  "rms_standard_error_of_paired_mean_difference": 0.26755252059026396,
+  "actor_unchanged": true,
+  "interpretation": "Same frozen actor and paired held-out trajectories; measured outcome, not a forced improvement criterion."
+}

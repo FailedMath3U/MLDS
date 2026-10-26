@@ -1,0 +1,28 @@
+{
+  "phase": "complete",
+  "pid": 1424674,
+  "gpu_uuid": "GPU-cef65388-88b0-f39a-6bac-c5316eb78540",
+  "elapsed_hours": 2.6378189333927975,
+  "max_training_hours": 16.0,
+  "updated_unix": 1792993951.1140206,
+  "models": {
+    "no_baseline": {
+      "episodes": 20000,
+      "updates": 2500,
+      "recent100_mean": -18.37,
+      "baseline": 0.0,
+      "best_validation_mean": -18.125,
+      "best_validation_episodes": 19456
+    },
+    "baseline": {
+      "episodes": 20000,
+      "updates": 2500,
+      "recent100_mean": -18.29,
+      "baseline": 0.25052859612492784,
+      "best_validation_mean": -17.875,
+      "best_validation_episodes": 9216
+    }
+  },
+  "gpu_memory_allocated_bytes": 113712640,
+  "peak_gpu_memory_bytes": 134812160
+}

@@ -1,0 +1,5 @@
+gymnasium==1.2.2
+ale-py==0.11.2
+torch>=2.2
+numpy>=1.26
+matplotlib>=3.7

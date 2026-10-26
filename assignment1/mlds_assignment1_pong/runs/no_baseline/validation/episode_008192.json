@@ -1,0 +1,336 @@
+{
+  "model_hash": "3b4681ab49a235757aac4e7051f1436d4d23d10d11151c86c986259cee864c38",
+  "requested_episodes": 32,
+  "completed_episodes": 32,
+  "complete": true,
+  "mean": -19.9375,
+  "population_std": 0.6584783595532961,
+  "sample_std": 0.6690146823211658,
+  "win_fraction": 0.0,
+  "mean_length": 1018.34375,
+  "stochastic_actions": true,
+  "reset_base": 10000000,
+  "action_base": 11000000,
+  "episodes": [
+    {
+      "episode": 1,
+      "score": -19.0,
+      "length": 1195,
+      "discounted_return": -0.27882149815559387,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000000,
+      "action_seed": 11000000
+    },
+    {
+      "episode": 2,
+      "score": -20.0,
+      "length": 859,
+      "discounted_return": -0.2959260642528534,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000001,
+      "action_seed": 11000001
+    },
+    {
+      "episode": 3,
+      "score": -20.0,
+      "length": 981,
+      "discounted_return": -0.2670349180698395,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000002,
+      "action_seed": 11000002
+    },
+    {
+      "episode": 4,
+      "score": -19.0,
+      "length": 954,
+      "discounted_return": -0.2956823706626892,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000003,
+      "action_seed": 11000003
+    },
+    {
+      "episode": 5,
+      "score": -21.0,
+      "length": 946,
+      "discounted_return": -0.5108617544174194,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000004,
+      "action_seed": 11000004
+    },
+    {
+      "episode": 6,
+      "score": -21.0,
+      "length": 1189,
+      "discounted_return": -0.47708553075790405,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000005,
+      "action_seed": 11000005
+    },
+    {
+      "episode": 7,
+      "score": -19.0,
+      "length": 1074,
+      "discounted_return": 0.3960634768009186,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000006,
+      "action_seed": 11000006
+    },
+    {
+      "episode": 8,
+      "score": -20.0,
+      "length": 1040,
+      "discounted_return": 0.20448128879070282,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000007,
+      "action_seed": 11000007
+    },
+    {
+      "episode": 9,
+      "score": -21.0,
+      "length": 946,
+      "discounted_return": -0.8772990107536316,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000008,
+      "action_seed": 11000008
+    },
+    {
+      "episode": 10,
+      "score": -19.0,
+      "length": 1138,
+      "discounted_return": -1.010677695274353,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000009,
+      "action_seed": 11000009
+    },
+    {
+      "episode": 11,
+      "score": -21.0,
+      "length": 884,
+      "discounted_return": -1.200927972793579,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000010,
+      "action_seed": 11000010
+    },
+    {
+      "episode": 12,
+      "score": -20.0,
+      "length": 1162,
+      "discounted_return": -1.1700876951217651,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000011,
+      "action_seed": 11000011
+    },
+    {
+      "episode": 13,
+      "score": -19.0,
+      "length": 1136,
+      "discounted_return": -1.1600199937820435,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000012,
+      "action_seed": 11000012
+    },
+    {
+      "episode": 14,
+      "score": -21.0,
+      "length": 825,
+      "discounted_return": -0.9691562652587891,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000013,
+      "action_seed": 11000013
+    },
+    {
+      "episode": 15,
+      "score": -20.0,
+      "length": 1041,
+      "discounted_return": 0.07662037014961243,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000014,
+      "action_seed": 11000014
+    },
+    {
+      "episode": 16,
+      "score": -20.0,
+      "length": 980,
+      "discounted_return": -0.9512234330177307,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000015,
+      "action_seed": 11000015
+    },
+    {
+      "episode": 17,
+      "score": -20.0,
+      "length": 1160,
+      "discounted_return": -0.5919559597969055,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000016,
+      "action_seed": 11000016
+    },
+    {
+      "episode": 18,
+      "score": -20.0,
+      "length": 859,
+      "discounted_return": -0.2959260642528534,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000017,
+      "action_seed": 11000017
+    },
+    {
+      "episode": 19,
+      "score": -20.0,
+      "length": 983,
+      "discounted_return": -0.9898257255554199,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000018,
+      "action_seed": 11000018
+    },
+    {
+      "episode": 20,
+      "score": -20.0,
+      "length": 859,
+      "discounted_return": -0.2959260642528534,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000019,
+      "action_seed": 11000019
+    },
+    {
+      "episode": 21,
+      "score": -20.0,
+      "length": 1160,
+      "discounted_return": 0.20540769398212433,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000020,
+      "action_seed": 11000020
+    },
+    {
+      "episode": 22,
+      "score": -20.0,
+      "length": 1281,
+      "discounted_return": -0.5451443195343018,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000021,
+      "action_seed": 11000021
+    },
+    {
+      "episode": 23,
+      "score": -20.0,
+      "length": 919,
+      "discounted_return": -0.28295814990997314,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000022,
+      "action_seed": 11000022
+    },
+    {
+      "episode": 24,
+      "score": -20.0,
+      "length": 920,
+      "discounted_return": -0.25785553455352783,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000023,
+      "action_seed": 11000023
+    },
+    {
+      "episode": 25,
+      "score": -20.0,
+      "length": 979,
+      "discounted_return": -0.29448944330215454,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000024,
+      "action_seed": 11000024
+    },
+    {
+      "episode": 26,
+      "score": -20.0,
+      "length": 859,
+      "discounted_return": -0.2959260642528534,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000025,
+      "action_seed": 11000025
+    },
+    {
+      "episode": 27,
+      "score": -20.0,
+      "length": 1164,
+      "discounted_return": -0.9586710929870605,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000026,
+      "action_seed": 11000026
+    },
+    {
+      "episode": 28,
+      "score": -20.0,
+      "length": 859,
+      "discounted_return": -0.2959260642528534,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000027,
+      "action_seed": 11000027
+    },
+    {
+      "episode": 29,
+      "score": -19.0,
+      "length": 1137,
+      "discounted_return": 0.3205694854259491,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000028,
+      "action_seed": 11000028
+    },
+    {
+      "episode": 30,
+      "score": -19.0,
+      "length": 1256,
+      "discounted_return": -0.19566446542739868,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000029,
+      "action_seed": 11000029
+    },
+    {
+      "episode": 31,
+      "score": -19.0,
+      "length": 954,
+      "discounted_return": -0.22651661932468414,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000030,
+      "action_seed": 11000030
+    },
+    {
+      "episode": 32,
+      "score": -21.0,
+      "length": 888,
+      "discounted_return": -1.2051461935043335,
+      "terminated": true,
+      "truncated": false,
+      "reset_seed": 10000031,
+      "action_seed": 11000031
+    }
+  ]
+}
