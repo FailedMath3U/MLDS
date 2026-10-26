@@ -1,435 +1,145 @@
 \documentclass[11pt,letterpaper]{article}
-\usepackage[margin=0.85in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,tabularx,array}
-\usepackage{graphicx,xcolor,caption,fancyhdr,titlesec}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,tabularx,graphicx,caption}
 \usepackage[hidelinks]{hyperref}
-\definecolor{navy}{HTML}{19354D}
-\titleformat{\section}{\large\bfseries\color{navy}}{\thesection}{0.65em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.65em}{}
-\titlespacing*{\section}{0pt}{11pt}{6pt}
-\titlespacing*{\subsection}{0pt}{9pt}{4pt}
-\captionsetup{font=small,labelfont=bf,skip=5pt}
-\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}
-\setlength{\intextsep}{6pt}\setlength{\textfloatsep}{8pt}\setlength{\floatsep}{8pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\captionsetup{font=small,labelfont=bf}
 \setlength{\emergencystretch}{2em}
-\renewcommand{\arraystretch}{1.15}
-\pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small Assignment 1: Policy gradient}
-\fancyhead[R]{\small CartPole-v1 and Pong-v5}
-\fancyfoot[C]{\small\thepage}\setlength{\headheight}{14pt}
 \graphicspath{{figures/}}
-\newcommand{\E}{\mathbb E}
-\input{metrics_macros.tex}
-\input{table_defs.tex}
-\input{submission.tex}
+\input{metrics_macros.tex}\input{table_defs.tex}\input{submission.tex}
+\newcommand{\resultplots}[6]{
+\begin{figure}[!ht]\centering
+\includegraphics[width=.85\linewidth,height=.29\textheight,keepaspectratio]{#1}
+\caption{#2: every training episode reward and trailing 100-episode mean. #3}
+\end{figure}
+\begin{figure}[!ht]\centering
+\includegraphics[width=.85\linewidth,height=.27\textheight,keepaspectratio]{#4}
+\caption{#2: 500 final-policy evaluation rewards. Mean #5; population standard deviation #6.}
+\end{figure}}
 \begin{document}
-\begin{center}
-{\LARGE\bfseries\color{navy} Policy Gradient: CartPole and Pong}\\[6pt]
-{\large Assignment 1 --- Parts 1 and 2}\\[5pt]
-{October 26, 2026}
-\end{center}
+\begin{center}{\Large\bfseries Assignment 1: Policy Gradient, Parts 1 and 2}\end{center}
+\textbf{GitHub:} \GithubUsername\quad \textbf{Repository:} \RepositoryName\\
+\RepositoryLink
 
-\textbf{GitHub username:} \GithubUsername\\
-\textbf{Repository name:} \RepositoryName\\
-\textbf{Repository link:} \RepositoryLink
+\section{Implementation}
+Both tasks use PyTorch Monte Carlo policy gradients and complete episodes. CartPole uses \texttt{CartPole-v1}; Pong uses \texttt{ALE/Pong-v5}, the namespaced Pong-v5 environment. Actions are sampled during training and evaluation.
 
-\SubmissionNotice
-
-\section*{Scope and main findings}
-This report covers the policy-gradient portions of the assignment: basic policy gradient for CartPole-v1 and Pong-v5, followed by both environments with a baseline. The shuttle-dispatch section is a separate report.
-
-The primary CartPole model without a baseline achieved 500 in every evaluation episode. CartPole's learned baseline reduced gradient variance at a frozen initial policy, but its primary training run performed worse. Pong improved modestly over an untrained policy, but \textbf{neither Pong method learned to win}: all 500 evaluation games for each final model were losses. The report preserves these unsuccessful outcomes rather than treating completion of training as successful task learning.
-
-
-\begin{table}[!ht]
-\centering
-\caption{Primary final-checkpoint results. Each row uses 500 fresh evaluation episodes with stochastic actions. SD is the population standard deviation of those episode rewards. CartPole uses the preselected training seed 1668; Pong has one training seed.}
-\begin{tabular}{llrr}
-\toprule
-Environment & Method & Mean reward & SD\\
-\midrule
-CartPole-v1 & Basic policy gradient & \CartBasicMean & \CartBasicSD\\
-CartPole-v1 & With learned baseline & \CartBaselineMean & \CartBaselineSD\\
-Pong-v5 & Basic policy gradient & \PongBasicMean & \PongBasicSD\\
-Pong-v5 & With constant EMA baseline & \PongBaselineMean & \PongBaselineSD\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-\section*{Guide to the required material}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth}X@{}}
-\toprule
-Assignment requirement & Location in this report\\
-\midrule
-Models, discounted objective, Adam and baseline choices & Sections~\ref{sec:setup}--\ref{sec:protocol}\\
-Part 1(a): CartPole curves, histogram, mean and SD & Section~\ref{sec:cartbasic}\\
-Part 1(b): Pong curves, histogram, mean and SD & Section~\ref{sec:pongbasic}\\
-Part 2: repeat both experiments with baselines & Sections~\ref{sec:cartbaseline}--\ref{sec:pongbaseline}\\
-Edge cases and quantitative correctness evidence & Sections~\ref{sec:carttests}--\ref{sec:trace}\\
-Execution and validation instructions & Section~\ref{sec:reproduce}\\
-Additional three months of experiments & Section~\ref{sec:future}\\
-\bottomrule
-\end{tabularx}
-
-\clearpage
-\section{Environment setup and basic policy gradient}\label{sec:setup}
-The implementations use PyTorch and REINFORCE-style Monte Carlo policy gradients~\cite{williams}. Gymnasium is used as the maintained successor to Gym. The exact environment IDs are \texttt{CartPole-v1} and \texttt{ALE/Pong-v5}; the latter is the official namespaced Pong-v5 environment~\cite{cartdocs,pongdocs}. No v0 or v4 substitute is used.
-
-\subsection{What the symbols mean}
-\begin{tabularx}{\linewidth}{@{}p{0.15\linewidth}X@{}}
-\toprule
-Symbol & Meaning\\
-\midrule
-$t$, $T$ & Decision index within a complete episode, and that episode's length.\\
-$s_t$ & Policy input before decision $t$: four physical measurements for CartPole, or image-derived features for Pong. It denotes an observation, not a claim of full observability.\\
-$a_t$, $r_t$ & Action selected at $t$ and reward received immediately afterward.\\
-$\theta$, $\pi_\theta(a\mid s)$ & Policy-network parameters and the probability of action $a$ at input $s$.\\
-$\gamma$, $G_t$ & Discount factor and discounted reward remaining from decision $t$.\\
-$b_t$ & Baseline subtracted from $G_t$; zero for Part 1.\\
-$B$, $i$ & Number of complete episodes in an update, and the index of one episode.\\
-\bottomrule
-\end{tabularx}
-
-The objective is the expected discounted reward of a complete episode:
-\begin{equation}
-J(\theta)=\E_{\pi_\theta}\!\left[\sum_{t=0}^{T-1}\gamma^t r_t\right],
+For decision $t$, $s_t$ is the observed input, $a_t$ the action, $r_t$ its subsequent reward, and $T$ the episode length. The policy $\pi_\theta(a\mid s)$ is a neural network with parameters $\theta$. With discount $\gamma$, the objective and reward-to-go are
+\[
+J(\theta)=\mathbb E_{\pi_\theta}\!\left[\sum_{t=0}^{T-1}\gamma^t r_t\right],
 \qquad G_t=\sum_{k=t}^{T-1}\gamma^{k-t}r_k.
-\end{equation}
-The expectation averages environment and action randomness. $G_t$ is computed backward using $G_t=r_t+\gamma G_{t+1}$, with zero continuation after the episode. The plots instead show \textbf{undiscounted episode reward}, $\sum_t r_t$, as required by the assignment.
-
-For each complete batch, Adam minimizes
-\begin{equation}
+\]
+For a batch of $B$ episodes, Adam minimizes
+\[
 \mathcal L=-\frac{c}{B}\sum_{i=1}^{B}\sum_{t=0}^{T_i-1}
-\gamma^t\log\pi_\theta(a_t^{(i)}\mid s_t^{(i)})\bigl(G_t^{(i)}-b_t^{(i)}\bigr).
-\label{eq:loss}
-\end{equation}
-Here $c$ is a fixed positive scale: 0.05 for CartPole and 1 for Pong. Scaling changes gradient magnitude but not the objective's optimum. The outer $\gamma^t$ is retained for the stated discounted episodic objective. In Part 1, $b_t=0$: returns are not centered or standardized, and no implicit baseline is introduced.
+\gamma^t\log\pi_\theta(a_t^{(i)}\mid s_t^{(i)})(G_t^{(i)}-b_t^{(i)}).
+\]
+Here $i$ indexes episodes, $b_t$ is the baseline (zero in Part 1), and $c$ is a fixed scale. Returns and baselines are detached from actor gradients; no return centering or standardization is used. Plots show \emph{undiscounted} episode rewards, as requested.
 
-
-
-A logit is an unnormalized action score; softmax converts the two scores into probabilities. Actions are sampled, including during evaluation. Gradients accumulate over the complete batch before an update; Pong computes them in memory-saving chunks without stepping between chunks.
-
-\clearpage
-\section{Baselines, task details, and evaluation protocol}\label{sec:baseline}
-\subsection{CartPole: learned state-and-time baseline}
-CartPole observes cart position, cart velocity, pole angle and pole angular velocity. Actions push left or right. Default rewards are $+1$ per transition, including failure; an episode ends on physical failure or truncation at 500 decisions~\cite{cartdocs}. Both flags finish the return calculation, and accumulation never crosses an episode boundary.
-
-The Part 2 baseline $b_\psi(s_t,t)$ is a separate network: five inputs (the four observations plus $t/500$), 64 tanh units and one output predicting $G_t$. $\psi$ denotes its weights. Predictions use weights from earlier batches and are detached from the actor loss. After the actor update, five Adam steps at learning rate 0.01 minimize mean squared error between predictions and full Monte Carlo targets over the batch's observed decisions. There is no temporal-difference bootstrapping.
-
-\subsection{Pong: visual input and constant baseline}
-Pong retains v5 defaults: frame skip 4, sticky-action probability 0.25, and an emulator limit of 108,000 frames. Discounting is per agent decision, not per raw emulator frame. The policy samples \textbf{only ALE actions 2 and 3} (RIGHT and LEFT), as assigned; no FIRE or NOOP startup action is added.
-
-The RGB image is cropped to rows 35--194, downsampled by two, and its red channel is binarized after removing background colors 144 and 109, matching the provided preprocessing. The policy receives the flattened difference between consecutive $80\times80$ binary frames, as float32 at inference. The input is zero on reset. This supplies motion information, but is not guaranteed to be a sufficient Markov state. Full games, not scoring rallies, are episodes; reward-to-go is \emph{not} reset after a point.
-
-For Part 2, the baseline is a scalar constant within a batch. Starting at $b_0=0$, update it only after using the current batch:
-\begin{equation}
-\bar G_k=\frac{\sum_{i,t}\gamma^t G_t^{(i)}}{\sum_{i,t}\gamma^t},
-\qquad b_{k+1}=0.95b_k+0.05\bar G_k.
-\end{equation}
-The index $k$ counts updates, not game decisions. Thus the current batch uses only prior data to set its baseline.
-
-An action-independent baseline does not change the expected \emph{unclipped} policy gradient: conditional on the current input and history,
-\begin{equation}
-\E_a[b\nabla_\theta\log\pi_\theta(a\mid s)]
-=b\nabla_\theta\sum_a\pi_\theta(a\mid s)=0.
-\end{equation}
-Here $\nabla_\theta$ is the vector of derivatives with respect to policy parameters, and $\E_a$ averages over sampled actions. Subtracting a predictable return can remove variation unrelated to which action was chosen; it does not change game rewards.
-
-\clearpage
-\section{Training configuration and evaluation}\label{sec:protocol}
-
-\begin{table}[!ht]
-\small\centering
-\caption{Actor settings. Both methods within an environment share these settings and start from identical actor parameters.}
-\begin{tabular}{lrr}
-\toprule
-Setting & CartPole & Pong\\
-\midrule
-Discount factor & 0.95 & 0.99\\
-Hidden layer & 64 tanh units & 200 ReLU units\\
-Output & 2 categorical logits & 2 categorical logits\\
-Adam learning rate & 0.01 & 0.001\\
-Episodes per update & 32 & 8\\
-Training episodes per method/seed & 8,000 & 20,000\\
-Training seeds & 1668, 1669, 1670 & 1668\\
+\begin{center}\small
+\begin{tabular}{lrr}\toprule
+Setting & CartPole & Pong\\\midrule
+Input & 4 physical observations & 6,400 frame-difference pixels\\
+Hidden layer; output & 64 tanh; 2 logits & 200 ReLU; 2 logits\\
+Discount $\gamma$; scale $c$ & 0.95; 0.05 & 0.99; 1\\
+Actor Adam learning rate & 0.01 & 0.001\\
+Episodes per update; total & 32; 8,000 & 8; 20,000\\
 Gradient-norm cap & 10 & 5\\
-Resource & CPU, no GPU & One GPU only\\
-\bottomrule
-\end{tabular}
-\end{table}
+Training seeds & 1668, 1669, 1670 & 1668\\
+Hardware & CPU & One GPU\\\bottomrule
+\end{tabular}\end{center}
 
+Pong uses only actions 2 and 3 (RIGHT and LEFT), with no startup FIRE/NOOP. Frames are cropped and downsampled to $80\times80$, backgrounds 144/109 removed, and foreground binarized using the assignment's preprocessing. Consecutive binary frames are subtracted to supply motion; the reset input is zero. Default frame skip 4 and sticky-action probability 0.25 are retained. Full games are episodes: returns never reset at points. Gradients accumulate over all eight games before one update.
 
-\subsection{Checkpoint and evaluation choices}
-The main results use \textbf{final checkpoints after fixed budgets}; every model receives 500 fresh stochastic evaluation episodes, with no learning. Reset seeds are separate from training and shared across methods. CartPole's primary seed 1668 was fixed before full experiments; all three seeds are retained. Pong also saved validation-selected checkpoints using 32 reserved games every 1,024 training games; their separate test results are supplementary, not substituted for final-checkpoint results.
+Pong's alternative rate 0.001 gives a smaller update: on identical game data, mean policy KL divergence after one update was $1.996\times10^{-6}$, versus $3.423\times10^{-4}$ at 0.01. This motivates a conservative rate but does not establish better long-run stability. Clipping affected 61.68\% of basic Pong updates and 18.64\% with a baseline; CartPole never reached its cap.
 
-Pong uses the permitted alternative learning rate 0.001. On identical real-game data, one update at 0.01 changed the policy more (mean KL divergence $3.423\times10^{-4}$) than 0.001 ($1.996\times10^{-6}$). KL divergence measures change in the action distribution. This supports a conservative step-size choice, \emph{not} a claim that 0.01 was proven unstable. All CartPole gradients stayed below their cap. Pong clipped 1,542/2,500 basic-method updates (61.68\%) and 466/2,500 baseline updates (18.64\%). Clipping is an additional stabilizing modification; the formal unbiasedness argument does not extend to the clipped estimator.
-
-\subsection{Resource and software record}
-CartPole used CPU only. Pong used one RTX 5060 Ti (GPU 0), with both actors in one GPU process and eight CPU emulator workers. It completed both 20,000-game training runs and all test evaluations in approximately 2.64 hours, below the 16-hour training ceiling. Only one training seed was used for Pong; there are no unreported Pong training-seed replicates.
-
-Both environments used Python 3.12, PyTorch 2.14.0+cu130, NumPy 2.5.3 and Gymnasium 1.2.2; Pong additionally used ALE 0.11.2. The CUDA-enabled PyTorch installation was reused for CartPole, but CartPole models and tensors stayed on CPU. Exact configurations and source hashes are saved with the results.
+\textbf{Evaluation.} Each main result uses the final fixed-budget checkpoint and 500 fresh episodes, without learning. Test reset seeds are separate from training and shared across methods. CartPole seed 1668 was selected before training for the main plots; all three seeds are reported below. SD denotes population SD across the 500 episode rewards.
 
 \clearpage
-\section{Part 1(a): CartPole without a baseline}\label{sec:cartbasic}
-The primary final policy scored \textbf{\CartBasicMean{} $\pm$ \CartBasicSD} over 500 evaluation episodes. All 500 reached the time limit. This establishes strong performance for this model under the evaluated reset distribution, not universal convergence across seeds.
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{cartpole_no_baseline_training.pdf}
-\caption{CartPole, Part 1: every training episode reward with the trailing 100-episode moving average. The average begins at episode 100. Seed 1668; 8,000 episodes.}\label{fig:cartbasictrain}
-\end{figure}
-
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{cartpole_no_baseline_hist.pdf}
-\caption{CartPole, Part 1: histogram of all 500 final-policy evaluation rewards. Every reward is 500; all mass is in the last bin. Mean \CartBasicMean, population SD \CartBasicSD.}\label{fig:cartbasichist}
-\end{figure}
-
-
-The untrained primary neural policy scored $20.926\pm11.467$ over 500 episodes. A uniform random policy scored $22.782\pm12.058$ over another 500 episodes. These references demonstrate substantial improvement beyond initialization or random action selection. The training curve also shows instability before the final plateau, so a favorable final result alone should not be interpreted as uniformly stable learning.
+\section{Part 1(a): CartPole-v1}
+The final primary policy scored \textbf{\CartBasicMean{} $\pm$ \CartBasicSD}. All 500 evaluations reached the 500-step limit. The untrained neural policy scored $20.926\pm11.467$ and a uniform random policy $22.782\pm12.058$ over 500 episodes each. Training improved performance substantially, but included large temporary declines.
+\resultplots{cartpole_no_baseline_training.pdf}{CartPole without a baseline}{Seed 1668; 8,000 episodes.}{cartpole_no_baseline_hist.pdf}{\CartBasicMean}{\CartBasicSD}
 
 \clearpage
-\section{Part 1(b): Pong without a baseline}\label{sec:pongbasic}
-After 20,000 full games, the final policy scored \textbf{\PongBasicMean{} $\pm$ \PongBasicSD} over 500 evaluation games. Scores ranged from $-21$ to $-10$; all games were losses and ended normally, not at the time limit. The task goal of learning to win was \textbf{not achieved}.
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{pong_no_baseline_training.pdf}
-\caption{Pong, Part 1: full-game rewards and their trailing 100-game moving average. No rally or point is counted as an episode. Seed 1668; 20,000 games.}\label{fig:pongbasictrain}
-\end{figure}
-
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{pong_no_baseline_hist.pdf}
-\caption{Pong, Part 1: all 500 final-policy evaluation rewards, with integer-score bins. Mean \PongBasicMean, population SD \PongBasicSD.}\label{fig:pongbasichist}
-\end{figure}
-
-
-An untrained-policy reference scored $-20.250\pm0.935$ over 32 games. The final policy improved modestly on that reference, but its final 100-game training average was still $-18.37$. The reference uses fewer episodes and different seeds, so it is a descriptive comparison rather than a formal paired significance test.
+\section{Part 1(b): Pong-v5}
+The final policy scored \textbf{\PongBasicMean{} $\pm$ \PongBasicSD}, ranging from $-21$ to $-10$. All 500 games were losses; none was truncated. An untrained reference scored $-20.250\pm0.935$ over 32 games. Performance improved modestly, but \textbf{the policy did not learn to win}.
+\resultplots{pong_no_baseline_training.pdf}{Pong without a baseline}{Seed 1668; 20,000 full games.}{pong_no_baseline_hist.pdf}{\PongBasicMean}{\PongBasicSD}
 
 \clearpage
-\section{Part 2: CartPole with a learned baseline}\label{sec:cartbaseline}
-The same primary seed, actor architecture, Adam settings and 8,000-episode budget were repeated with the learned baseline described in Section~\ref{sec:baseline}. The final model scored \textbf{\CartBaselineMean{} $\pm$ \CartBaselineSD}. Four evaluation episodes reached 500; the other 496 ended through physical failure.
+\section{Part 2(a): CartPole with a baseline}
+The baseline is a separate network with inputs $(s_t,t/500)$, 64 tanh units and one output predicting $G_t$. Predictions use weights from earlier batches and are frozen for the actor update. Afterward, five Adam steps at rate 0.01 fit Monte Carlo returns by mean squared error. Actor settings and initial parameters match Part 1.
 
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{cartpole_baseline_training.pdf}
-\caption{CartPole, Part 2: every training reward and trailing 100-episode moving average for REINFORCE with the learned state/time baseline. Seed 1668.}\label{fig:cartbaselinetrain}
-\end{figure}
-
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{cartpole_baseline_hist.pdf}
-\caption{CartPole, Part 2: histogram of 500 final-policy evaluation rewards. Mean \CartBaselineMean, population SD \CartBaselineSD.}\label{fig:cartbaselinehist}
-\end{figure}
-
-
-The baseline method improved markedly over random and untrained policies but performed worse than the primary basic method. It used the same number of environment episodes while doing extra computation to fit the baseline. A baseline's potential to reduce gradient variance is not a guarantee of better final control; Section~\ref{sec:carttests} measures that distinction directly.
+The final model scored \textbf{\CartBaselineMean{} $\pm$ \CartBaselineSD}. Four episodes reached 500; 496 ended in physical failure. This primary baseline run performed worse than the basic method.
+\resultplots{cartpole_baseline_training.pdf}{CartPole with a learned baseline}{Seed 1668; 8,000 episodes.}{cartpole_baseline_hist.pdf}{\CartBaselineMean}{\CartBaselineSD}
 
 \clearpage
-\section{Part 2: Pong with a constant EMA baseline}\label{sec:pongbaseline}
-Pong was repeated for 20,000 games with identical initial actor parameters, action restrictions and episode/reset schedules, adding the lagged constant baseline. The final policy scored \textbf{\PongBaselineMean{} $\pm$ \PongBaselineSD}. Scores ranged from $-21$ to $-5$; all 500 games were losses and none hit the time limit.
+\section{Part 2(b): Pong with a baseline}
+The baseline is a lagged scalar exponential moving average. Update $k$ uses $b_k$, starting at $b_0=0$; afterward,
+\[
+\bar G_k=\frac{\sum_{i,t}\gamma^tG_t^{(i)}}{\sum_{i,t}\gamma^t},
+\qquad b_{k+1}=0.95b_k+0.05\bar G_k.
+\]
+Thus the baseline uses only previous batches when forming an actor gradient. An action-independent baseline preserves the expected unclipped gradient because
+$\mathbb E_a[b\nabla_\theta\log\pi_\theta(a\mid s)]=b\nabla_\theta\sum_a\pi_\theta(a\mid s)=0$.
+Here $\nabla_\theta$ denotes differentiation with respect to policy parameters. Clipping can alter this expectation.
 
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{pong_baseline_training.pdf}
-\caption{Pong, Part 2: full-game rewards and trailing 100-game moving average with the constant EMA baseline. Seed 1668; 20,000 games.}\label{fig:pongbaselinetrain}
-\end{figure}
-
-
-
-\begin{figure}[!ht]
-\centering\includegraphics[width=0.93\linewidth]{pong_baseline_hist.pdf}
-\caption{Pong, Part 2: all 500 final-policy evaluation rewards. Mean \PongBaselineMean, population SD \PongBaselineSD.}\label{fig:pongbaselinehist}
-\end{figure}
-
-
-The mean exceeds the basic method by only 0.164 points, and the episode SD is larger. One training seed per method is insufficient to establish general superiority. The last 100 training games averaged $-18.29$. Later fixed-policy variance measurements also show that this EMA baseline did not consistently reduce variance (Section~\ref{sec:pongvariance}).
+The final score was \textbf{\PongBaselineMean{} $\pm$ \PongBaselineSD}, only 0.164 above Part 1. All 500 games were losses (range $-21$ to $-5$), with no truncations. One training seed cannot establish a general benefit.
+\resultplots{pong_baseline_training.pdf}{Pong with an EMA baseline}{Seed 1668; 20,000 full games.}{pong_baseline_hist.pdf}{\PongBaselineMean}{\PongBaselineSD}
 
 \clearpage
-\section{Comparison across runs and objective limitations}\label{sec:comparison}
-\subsection{CartPole: retaining all training seeds}
+\section{Additional experiments and interpretation}
+\subsection*{Training seeds and learning rate}
+\begin{center}\small
+\begin{tabular}{lrrrr}\toprule
+Method & Seed & Mean & SD & Fraction at 500\\\midrule
+\CartSeedRows\bottomrule
+\end{tabular}\end{center}
+Across the three seeds, mean evaluation reward was 418.570 without a baseline and 323.588 with it. The baseline improved seed 1669 but not the others.
 
-\begin{table}[!ht]
-\centering
-\caption{All CartPole final checkpoints. Each row has 500 evaluation episodes. ``At 500'' is the fraction reaching the maximum episode score.}
-\begin{tabular}{lrrrr}
-\toprule
-Method & Training seed & Mean & Population SD & At 500\\
-\midrule
-\CartSeedRows
-\bottomrule
-\end{tabular}
-\end{table}
+Further runs changed only the actor rate, retaining the same three seeds, budgets and 500-episode evaluations; the critic rate stayed 0.01:
+\begin{center}
+\begin{tabular}{rrr}\toprule
+Actor rate & No baseline: mean across seeds & Learned baseline: mean across seeds\\\midrule
+0.01 & 418.570 & 323.588\\
+0.005 & 163.178 & 357.661\\
+0.002 & 247.102 & 264.481\\\bottomrule
+\end{tabular}\end{center}
+Smaller rates did not consistently improve final performance. These are exploratory comparisons across three seeds, not evidence of an optimal rate.
 
+\subsection*{Were CartPole's dips just episode noise?}
+Both original seed-1668 runs were replayed exactly: all 8,000 rewards and final parameter hashes matched. Frozen checkpoints before and during selected dips were then evaluated on 500 fresh paired reset/action seeds. Basic-policy means fell from 453.108 (episode 5,120) to 83.114 (6,400): paired change $-369.994$, bootstrap 95\% interval $[-377.430,-362.038]$. Baseline-policy means fell from 440.466 (3,072) to 215.686 (6,144): change $-224.780$, interval $[-231.886,-217.436]$.
 
-Across the three training seeds, the average of the evaluation means was 418.570 without a baseline and 323.588 with it; sample SDs across these means were 127.341 and 55.057. These describe \emph{between-training-run} variation, not the episode SDs in the table. The baseline outperformed the basic method for seed 1669, but not for the other two. Three seeds do not justify a broad significance claim or a claim that adding a baseline necessarily improves performance.
+Holding the earlier basic policy fixed for 2,000 fresh episodes gave 100-episode averages of 430.11--472.29; continued training reached 74.64. The baseline's frozen range was 413.00--453.82, versus a continued-training minimum of 211.37. Policy quality changed beyond ordinary fixed-policy episode noise. Noisy updates may cause such changes, but this experiment does not identify the optimization mechanism. Checkpoints were selected after inspecting training curves; intervals are conditional on these policies, not uncertainty across training seeds.
 
-\subsection{Pong: final versus validation-selected checkpoints}
-The primary figures use final policies after 20,000 games. For transparency, auxiliary checkpoint selection used only separate 32-game validations, never the 500-game test rewards:
-
-\begin{table}[!ht]
-\centering
-\caption{Supplementary Pong validation-selected policies, each separately tested for 500 games. These do not replace the final-policy results.}
-\begin{tabular}{lrrr}
-\toprule
-Method & Selected training game & Test mean & Test SD\\
-\midrule
-No baseline & 19,456 & $-18.704$ & 1.725\\
-EMA baseline & 9,216 & $-18.466$ & 1.815\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Neither selected policy won a test game. The fixed-budget results therefore do not conceal an earlier checkpoint that solved the task.
-
-\subsection{Discounted return can improve while full-game score remains poor}
-In CartPole, $+1$ rewards imply discounted return $(1-0.95^T)/0.05$, which approaches 20. The primary baseline model's mean discounted evaluation return was 19.999743, versus approximately 20 for the basic model, despite their large difference in undiscounted scores.
-
-In Pong, the untrained reference's mean discounted return was $\PongReferenceDiscounted$, compared with 0.313913 and 0.293346 for the final basic and baseline models. Thus the recorded discounted objective improved even though full-game scores remained strongly negative. At $\gamma=0.99$, a reward 500 decisions away has weight about 0.00657, and one 1,000 decisions away has weight about $4.32\times10^{-5}$. This creates a plausible credit-assignment limitation for games averaging over 1,250 decisions in evaluation. It does not by itself establish the cause of failure; a controlled ablation would be needed.
-
+\subsection*{What the discounted objective rewards}
+CartPole's discounted return is $(1-0.95^T)/0.05$, approaching 20 even for episodes shorter than 500. The primary baseline model averaged 19.999743 despite its lower undiscounted score. In Pong, discounted evaluation return improved from $-1.309180$ at initialization to 0.313913 (basic) and 0.293346 (baseline), while full-game scores remained poor. At $\gamma=0.99$, rewards 1,000 decisions away receive weight $4.32\times10^{-5}$. This suggests a credit-assignment limitation, but is not a causal test.
 
 \clearpage
-\section{Correctness and edge-case experiments: CartPole}\label{sec:carttests}
-The following experiments test numerical predictions and task behavior. They complement the observed improvement over random policies; they do not use AI's agreement as evidence of correctness. Run \texttt{python validate.py} in the CartPole project to execute them.
+\section{Edge cases and quantitative validation}
+\subsection*{CartPole: both methods}
+\textbf{Returns and gradient.} Rewards $(1,1,1)$ at $\gamma=0.95$ must give returns $(2.8525,1.95,1)$; the code matches. Setting $\gamma=0$ gives immediate rewards. In an enumerable two-step task with binary-action reward and action probability $p=\operatorname{sigmoid}(\theta)$, the analytic gradient is $(1+\gamma)p(1-p)$. Enumeration gave 0.471188756 versus analytic 0.471188748, with and without a constant baseline. A rewarded-action update increased its probability from 0.500000 to 0.502500, checking the loss sign.
 
-\subsection{Return calculation and gradient direction}
-For rewards $(1,1,1)$ and $\gamma=0.95$, the independently calculated returns are $(2.8525,1.95,1)$. The implementation agrees to float32 precision. Setting $\gamma=0$ returns the immediate rewards exactly. These experiments check discount exponents and the absence of reward leakage between decisions.
+\textbf{End conditions.} Forced cart-position and pole-angle violations terminated the episode and retained the terminal $+1$ reward. A one-step time limit truncated without physical failure. Either flag ends return accumulation, with zero continuation. Fixed reset seeds and ten fixed actions reproduced identical states. The saved ten-decision trace records states, action probabilities, actions and rewards for inspection.
 
-In an exactly enumerable two-step problem, both actions follow a Bernoulli probability $p=\operatorname{sigmoid}(\theta)$, and each reward equals the binary action. The exact objective is $(1+\gamma)p$; its derivative is $(1+\gamma)p(1-p)$. Summing the policy-gradient estimator over all four action sequences produced 0.471188756, with or without a constant baseline, compared with analytic derivative 0.471188748. This checks the reward-to-go and outer-discount convention as well as baseline invariance.
+\textbf{Baseline mechanism.} At a frozen initial actor, a baseline fitted on 512 separate episodes was evaluated on 512 paired held-out trajectories. Summed parameter-gradient variances fell from 5.338262 to 0.842421 (84.22\%). The empirical mean-gradient difference was 0.0474, versus paired standard-error magnitude 0.1176. This supports variance reduction at that actor; it does not validate sustained reduction by the critic's five-step online fitting schedule. The controlled replay experiment above separately tests whether training dips reflect real policy changes.
 
-A positive-return update for one selected action increased its probability from 0.500000 to 0.502500. An incorrect loss sign would reverse this direction.
-
-\subsection{Physical termination, truncation and reproducibility}
-Two runs with a fixed reset seed and the same ten actions produced identical state sequences. Separately placing the cart beyond its allowed position and the pole beyond its allowed angle caused physical termination; the terminal step still received $+1$. A one-decision time-limit experiment caused truncation without physical failure. The implementation ends on either flag, resets before another episode, and uses zero continuation after the specified episodic horizon. This checks end-condition logic against known environment behavior, rather than only checking array formats.
-
-The full ten-decision trace is inspected in Section~\ref{sec:trace}. It records state, action probabilities, sampled actions and rewards so individual decisions can be examined independently of a learning curve.
-
-\subsection{Does the learned baseline reduce gradient variance?}
-A policy was frozen at initialization. A separate baseline was fitted on 512 episodes using 150 MSE/Adam steps, then both gradient estimators were evaluated on the \emph{same} 512 different trajectories. This is a separate variance experiment, not the evolving five-critic-steps-per-training-batch procedure. Summing sample variances over policy parameters gave:
-
-\begin{table}[!ht]
-\centering
-\caption{CartPole fixed-policy gradient variance, measured as the trace of the sample covariance matrix.}
-\begin{tabular}{lr}
-\toprule
-Estimator & Sum of parameter variances\\
-\midrule
-No baseline & 5.338262\\
-Fitted baseline & 0.842421\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-The reduction is \CartVarianceReduction\%. The distance between empirical mean gradients was 0.0474, compared with a root-sum-squared standard error of 0.1176 for their paired difference. This is consistent with, but does not prove, the expected-gradient identity. It establishes a variance benefit at this frozen policy; it does not contradict the weaker final baseline training results or prove variance reduction throughout training.
-
-\clearpage
-\section{Correctness and edge-case experiments: Pong}\label{sec:pongtests}
-Pong was launched only after 15 preflight checks passed. Preflight evidence is preserved in \path{preflight/results.json}. The checks include the following task-specific predictions and controls.
-
-\subsection{Returns across points and action restrictions}
-For rewards $(0,1,0,-1)$ and $\gamma=0.99$, the expected reward-to-go values are
+\subsection*{Pong: both methods}
+\textbf{Episode boundaries and actions.} Rewards $(0,1,0,-1)$ at $\gamma=0.99$ must yield
 \[ (G_0,G_1,G_2,G_3)=(0.019701,0.0199,-0.99,-1). \]
-The implementation matched these within $10^{-6}$. In particular, the negative reward still affects returns before the earlier positive point: returns are not accidentally reset at scoring boundaries. A separate zero-discount test returned the immediate rewards.
+The implementation matched within $10^{-6}$. This checks that returns cross scoring boundaries. Zero discount recovered immediate rewards; the two-step analytic-gradient test agreed within $10^{-7}$. Zero returns produced zero basic-policy gradient. Complete games reached scoring events and termination using only actions 2/3; workers reject other actions.
 
-The two-step enumerated-gradient experiment was repeated at $\gamma=0.99$ and agreed with its analytic derivative within $10^{-7}$, with and without an action-independent baseline. A positive-return update increased the chosen action's probability; zero returns without a baseline produced zero gradient.
+\textbf{Images and replay.} Known synthetic pixels verified crop, downsampling, background removal and foreground preservation without modifying the source image. Real inputs were zero at reset and otherwise in $\{-1,0,1\}$. Resetting frame history prevents leakage across games. Identical emulator seeds and fixed actions reproduced frame/reward hashes with sticky actions retained. Saved traces include the first ten decisions, a scoring event and the ending, with corresponding image differences.
 
-Complete preflight games generated scoring events and reached an episode end using only actions 2 and 3. Runtime workers reject any other agent action, and verify the environment's action names. This tests actual progress without silently introducing a FIRE or NOOP wrapper. Recorded final evaluations contained 500 normal terminations and zero truncations for each model, ruling out evaluation scores generated by an accidentally shortened game.
+\textbf{Baseline mechanism.} A separately fitted initial constant reduced summed gradient variance from 369.320 to 20.763 on 16 held-out games (94.38\%). This candidate is distinct from the training EMA, which starts at zero. At 4,096, 8,192, 12,288 and 16,384 games, the actual EMA's paired variance ratios (with/without baseline, at the same frozen actor) were 0.873, 1.017, 0.924 and 1.011. It did not consistently reduce variance. These small 16-game probes have no variance-ratio confidence intervals and measure unclipped gradients.
 
-\subsection{Visual preprocessing and stochastic replay}
-Synthetic images with known pixels checked the crop, factor-two sampling, removal of colors 144 and 109, preservation of foreground pixels, and lack of mutation of the original RGB frame. Real-game inputs were checked to be zero on reset and otherwise to take values only in $\{-1,0,1\}$ after differencing. Resetting the previous frame prevents an artificial motion signal from leaking between games.
-
-Two emulator runs with the same reset seed and fixed actions produced identical frame/reward hashes even with v5's sticky actions. This demonstrates controlled reproducibility without removing the stochasticity required by the chosen environment version. Stochastic policy actions remain separate from emulator randomness.
-
-\subsection{Learning-rate, resource and recovery experiments}
-Two copies of the same initial policy received one update using identical full-game data. Mean forward KL from the old policy was $3.423\times10^{-4}$ at learning rate 0.01 and $1.996\times10^{-6}$ at 0.001. These quantify relative update size, not a long-run learning-rate comparison.
-
-Preflight checked exactly one visible CUDA device and performed real GPU updates. Both policies used that one device; eight CPU workers ran the emulators. The complete suite finished in approximately 2.64 hours. There was no multi-GPU training.
-
-An actor and its Adam state were saved after an update, restored into another copy, and both received the same next fixed-data update. The resulting parameter hashes matched exactly. This tests optimizer recovery, not an extra on-policy learning experiment. Source/config hashes, finite parameters, backup checkpoints, independent episode RNG seeds and saved evaluation progress protected the long run. Initial actors matched across methods, and every current batch used a baseline frozen from earlier data. These operational checks supplement the gradient and behavior experiments; they do not establish successful task learning.
+\textbf{Recovery and resources.} Restoring actor and Adam state and repeating the next fixed-data update reproduced parameter hashes exactly. Preflight passed all 15 checks and verified one visible GPU. Both methods used that GPU sequentially with eight CPU emulator workers; training and evaluation completed in 2.64 hours. These checks support implementation correctness, while the game scores establish that learning remained inadequate.
 
 \clearpage
-\section{Pong baseline variance over training}\label{sec:pongvariance}
-A baseline is intended to reduce variance in gradient estimates, not necessarily the variance of episode rewards. To isolate its effect, each probe freezes one actor and computes both estimators on the same held-out trajectories, without updating that actor or its training statistics.
+\section{Run instructions}
+Paths below are relative to the repository's \texttt{assignment1/} directory. Use a fresh copy for training to preserve saved results. Python 3.12, PyTorch 2.14.0, NumPy 2.5.3 and Gymnasium 1.2.2 were used; Pong also used ALE 0.11.2.
 
-At initialization, a candidate constant baseline was estimated from eight independent games and measured on 16 held-out games. The summed per-parameter gradient variance changed from 369.320 to 20.763, a \PongInitialVarianceReduction\% reduction. This is a \emph{separately fitted candidate}, not the actual first training batch's EMA baseline, which starts at zero.
-
-
-\begin{table}[!ht]
-\small\centering
-\caption{All later Pong probes. Each uses 16 paired held-out games. $V_0$ is summed gradient variance with no baseline; $V_b$ uses the probe's constant baseline. A ratio below one means measured reduction.}
-\begin{tabular}{lrrrr}
-\toprule
-Actor's training method & Training games & $V_0$ & $V_b$ & $V_b/V_0$\\
-\midrule
-\PongVarianceRows
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-For actors trained without a baseline, a hypothetical constant was fitted on eight separate games solely for the probe; it was never used in those actors' training. For actors trained with the EMA baseline, the probe used the actual frozen EMA value from prior training. These are within-actor comparisons: comparing variance levels \emph{between different actors} would confound the baseline with changes in policy.
-
-The actual EMA baseline's ratios were 0.873, 1.017, 0.924 and 1.011. It therefore reduced the measured variance at some checkpoints and slightly increased it at others. The separately fitted baseline also stopped consistently helping later basic-method actors. These findings do not support a claim of sustained variance reduction from this constant baseline. With only 16 trajectories per checkpoint, the estimates are noisy, and no confidence interval for the ratios was computed.
-
-Each probe also saves the difference between empirical mean gradients and its paired standard-error measure, plus a check that actor parameters remain unchanged. The analytic expected-gradient identity is stronger than finite-sample equality. In addition, these variance probes measure the \emph{unclipped} estimator; the frequent clipping during actual Pong training is a separate source of bias and altered update variability.
-
-These results motivate a state-dependent baseline and more samples per variance probe as future ablations. They do not justify changing or selectively omitting the reported constant-baseline run.
-
-\clearpage
-\section{Inspecting decisions rather than only curves}\label{sec:trace}
-\renewcommand{\arraystretch}{1.0}
-\subsection{CartPole: the first ten decisions}
-The saved trace uses the final primary basic policy, reset seed 9100000 and action-sampling seed 123456. The four state components below are cart position $x$, velocity $\dot x$, pole angle $\alpha$ in radians, and angular velocity $\dot\alpha$. $P(1)$ is the probability of pushing right; actions 0 and 1 mean left and right. All ten rewards were 1, and neither end flag was set.
-
-
-\begin{table}[!ht]
-\small\centering
-\caption{Actual CartPole decisions, with probabilities before sampling the action.}
-\begin{tabular}{rrrrrrr}
-\toprule
-$t$ & $x$ & $\dot x$ & $\alpha$ & $\dot\alpha$ & $P(1)$ & Action\\
-\midrule
-\CartTraceRows
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-At decision 3, left was sampled although right had probability 0.7711. This is valid stochastic behavior: probability is not a deterministic instruction. The changing angular velocity also shows why inspecting the pole angle alone would not explain every action.
-
-\subsection{Pong: the beginning, a scored point, and the ending}
-The final basic policy's first evaluation game has a compressed image-difference trace and CSV. The first ten decisions, the first point's neighborhood, and the end are saved; skipped middle decisions are not presented as consecutive steps.
-
-
-\begin{table}[!ht]
-\small\centering
-\caption{Selected actual Pong decisions. $P(2)$ is the probability of ALE action 2; $G_t$ includes all subsequent point rewards, not only the next point.}
-\begin{tabular}{rrrrrr}
-\toprule
-$t$ & $P(2)$ & ALE action & Reward & $G_t$ & $\gamma^t$\\
-\midrule
-\PongTraceRows
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-Step 0 has zero motion input. The point at step 93 is positive, whereas the late loss at 1797 has weight only $1.43\times10^{-8}$. This illustrates discounting, not its causal effect on learning. The \path{*_frames.npz} files retain the corresponding $80\times80$ motion inputs.
-
-\clearpage
-\section{How to reproduce and validate the results}\label{sec:reproduce}
-\renewcommand{\arraystretch}{1.15}
-The repository is organized into \path{mlds_assignment1_cartpole}, \path{mlds_assignment1_pong}, and \path{mlds_assignment1_policy_gradient_report}. All algorithm, validation, plotting and report-generation source is included. Preserve the recorded outputs before rerunning commands that write into their run directories.
-
-\subsection{CartPole: train, evaluate and run validation}
-In a Python environment with PyTorch, install the CartPole requirements and run:
+\textbf{CartPole:} install requirements, train all six models, evaluate each for 500 episodes, then run the numerical and environment tests:
 \begin{verbatim}
 cd mlds_assignment1_cartpole
 python -m pip install -r requirements.txt
@@ -437,49 +147,29 @@ python cartpole.py suite --episodes 8000 --lr 0.01
 python validate.py
 jupyter lab cartpole_plots.ipynb
 \end{verbatim}
-The suite trains all six models and evaluates each for 500 episodes. The validation script executes the experiments in Section~\ref{sec:carttests}, raises an error on a failed assertion, and writes \path{validation/validation.json}. The notebook regenerates plots without training. To evaluate one saved model:
-\begin{verbatim}
-python cartpole.py evaluate \
-  --checkpoint runs/no_baseline_seed1668/last.pt
-\end{verbatim}
+Validation evidence is in \texttt{validation/validation.json}; the notebook plots saved results without retraining. The controlled dip experiment is reproduced with
+\texttt{python instability\_experiment.py}, followed by
+\texttt{python plot\_instability\_experiment.py}; see its saved \texttt{plan.json} and README for seeds and bootstrap details. The separate \texttt{cartpole\_lr005} and \texttt{cartpole\_lr002} folders each contain \texttt{run.sh}, which runs the six lower-rate experiments, validation and plotting.
 
-\subsection{Pong: preflight and a fresh single-GPU reproduction}
-Activate \path{~/mlds_assignment1_pong_env} on deepdish5. On a new host, first create that virtual environment and install the Pong \path{requirements.txt}. For a fresh reproduction, copy \path{pong_env.py}, \path{pong_core.py}, \path{run_pong.py}, \path{plot_results.py}, \path{supervise.sh} and \path{config.json} into a new directory, without old checkpoints or preflight outputs. Then run:
+\textbf{Pong:} in a fresh directory containing its source, config and requirements, activate a Python environment and install requirements. Select one GPU; set its UUID in \texttt{config.json} and \texttt{supervise.sh}. Then:
 \begin{verbatim}
-export CUDA_VISIBLE_DEVICES=GPU-cef65388-88b0-f39a-6bac-c5316eb78540
+export CUDA_VISIBLE_DEVICES=<single-GPU-UUID>
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 python run_pong.py preflight
 nohup setsid bash supervise.sh > nohup.log 2>&1 < /dev/null &
 \end{verbatim}
-The UUID is the original assigned card; on another host, update both the config and supervisor to one available GPU before preflight. Preflight runs Section~\ref{sec:pongtests}'s checks; the job adds variance probes every 4,096 games. Existing checkpoints trigger resume, not new training.
+Preflight executes the Pong checks above. Existing checkpoints resume rather than restart. See \texttt{preflight/results.json}, \texttt{runs/*/training.csv},
+\texttt{runs/*/evaluation/test\_final.json}, and \texttt{diagnostics/} for quantitative evidence. The source README documents recovery and traces.
 
-Inspect \path{preflight/results.json} for controls and versions, \path{runs/*/training.csv} for training, \path{runs/*/evaluation/test_final.json} for individual test rewards, and \path{diagnostics/} for variance and trace data. The source README documents checkpoint recovery and all output paths.
+\textbf{Report:} run \texttt{python build\_assets.py}, then compile
+\texttt{POLICY\_GRADIENT\_REPORT.tex} with Tectonic or pdfLaTeX. Run
+\texttt{python combine\_submission.py} to join the shuttle and policy-gradient PDFs.
 
-\subsection{Rebuild this report without training}
-Run \texttt{python build\_assets.py} in this report folder beside the two saved experiment folders, then compile \path{POLICY_GRADIENT_REPORT.tex} with Tectonic or pdfLaTeX twice. The script independently recomputes statistics and all eight plots. Repository metadata comes from \path{submission.json}; detailed build instructions are in the README.
+\section{Experiments with three additional months}
+\textbf{CartPole:} use more independent training seeds and separate tuning/test resets. Compare learning rates, batch sizes and baseline fitting schedules under matched budgets; measure critic error and paired gradient variance throughout training. Stress-test initial angles, velocities and altered physical parameters to assess generalization beyond standard resets.
 
-\clearpage
-\section{What would be tested with three additional months?}\label{sec:future}
-\subsection{CartPole: distinguish reliable learning from a favorable seed}
-Run substantially more seeds with separate hyperparameter-validation and final-test resets. Sweep Adam learning rate and batch size under matched episode budgets. Compare the current learned state/time baseline with a constant baseline and different critic capacities or fitting frequencies. Measure critic error and paired gradient variance at early, middle and late actor checkpoints, not only at initialization. This would test whether baseline approximation or update lag contributes to the weaker primary run.
+\textbf{Pong:} keep v5, actions 2/3 and $\gamma=0.99$ while comparing frame differences against frame stacks and a small convolutional policy. Measure gradient contributions by episode time to test delayed-credit limitations. Tune learning rate, clipping and batch size on validation seeds, then repeat training across seeds with untouched 500-game tests.
 
-Stress-test the final policies using controlled initial pole angles, cart velocities and changed pole/cart physics. Evaluate stochastic and greedy policies separately. These experiments would determine whether the perfect primary evaluation generalizes beyond the standard small reset region and whether the observed cross-seed variability persists.
-
-\subsection{Pong: investigate failure with controlled ablations}
-First, retain the required v5 environment and actions 2/3, but compare frame differencing with two- or four-frame stacks and a small convolutional policy. This tests whether the present features discard useful position information. Track point outcomes, first-point performance and complete-game score separately, without replacing full games with point episodes in the main comparison.
-
-Second, examine credit assignment: measure how much of the unclipped gradient comes from successive time windows, and compare discounting conventions only in explicitly labeled sensitivity experiments. Keep the required $\gamma=0.99$ result as the main experiment. For example, restarting returns at points would change the objective and must not be presented as the original full-game algorithm.
-
-Third, tune learning rate, gradient cap and batch size using held-out validation seeds. Compare clipping frequencies and action saturation as well as returns. Repeat with several training seeds, and reserve untouched seeds for final 500-game evaluations. Longer training alone would not distinguish a poor representation, optimization problems and a weak late-game reward signal.
-
-\subsection{Baselines: test the mechanism, not only the score}
-For Pong, compare the current lagged scalar with learned state-dependent and time-dependent baselines. Fit and test each on independent trajectories at the same frozen actors. Use hundreds of paired trajectories per probe, bootstrap uncertainty for variance ratios, and compare clipped and unclipped gradients. This would establish when a baseline helps, whether apparent small increases are sampling noise, and whether reduced variance translates into better task performance.
-
-\begin{thebibliography}{9}
-\small\raggedright
-\bibitem{williams} R. J. Williams. Simple statistical gradient-following algorithms for connectionist reinforcement learning. \emph{Machine Learning} 8, 229--256 (1992). \url{https://doi.org/10.1007/BF00992696}.
-\bibitem{cartdocs} Farama Foundation. Cart Pole environment documentation. \url{https://gymnasium.farama.org/environments/classic_control/cart_pole/}.
-\bibitem{pongdocs} Farama Foundation. Pong environment documentation. \url{https://ale.farama.org/environments/pong/}.
-\end{thebibliography}
+\textbf{Baselines:} compare scalar, state-dependent and time-dependent predictions at identical frozen actors, fitting on independent data. Use hundreds of paired trajectories and bootstrap variance-ratio intervals. Compare clipped and unclipped estimators to determine whether variance reduction translates into better control.
 \end{document}

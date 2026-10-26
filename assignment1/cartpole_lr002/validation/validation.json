@@ -1,0 +1,83 @@
+{
+  "analytic_discounted_returns": {
+    "passed": true,
+    "rewards": [
+      1,
+      1,
+      1
+    ],
+    "expected": [
+      2.8525,
+      1.95,
+      1
+    ],
+    "observed": [
+      2.8524999618530273,
+      1.9500000476837158,
+      1.0
+    ]
+  },
+  "zero_discount_is_immediate_reward": {
+    "passed": true
+  },
+  "enumerated_policy_gradient_and_baseline_invariance": {
+    "passed": true,
+    "analytic_gradient": 0.47118874776486297,
+    "no_baseline_gradient": 0.4711887562834002,
+    "constant_baseline_gradient": 0.4711887562834003,
+    "explanation": "Enumerate all four paths in a two-step MDP; subtracting an action-independent baseline leaves the expected gradient unchanged."
+  },
+  "rewarded_action_probability_increases": {
+    "passed": true,
+    "before": 0.5,
+    "after": 0.5024999976158142
+  },
+  "seeded_environment_replay": {
+    "passed": true,
+    "steps": 10
+  },
+  "cart_position_boundary": {
+    "passed": true,
+    "terminated": true,
+    "truncated": false,
+    "reward": 1.0
+  },
+  "pole_angle_boundary": {
+    "passed": true,
+    "terminated": true,
+    "truncated": false,
+    "reward": 1.0
+  },
+  "time_limit_is_truncation": {
+    "passed": true,
+    "terminated": false,
+    "truncated": true,
+    "explanation": "Training and evaluation end on either flag; reward-to-go stops at the specified episodic horizon without bootstrapping."
+  },
+  "frozen_policy_gradient_variance": {
+    "passed": null,
+    "trajectories": 512,
+    "fitting_trajectories": 512,
+    "variance_no_baseline": 5.33826208114624,
+    "variance_baseline": 0.8424209952354431,
+    "variance_ratio": 0.15780809979538454,
+    "variance_reduction_fraction": 0.8421919002046154,
+    "mean_gradient_difference_norm": 0.04739914461970329,
+    "rms_standard_error_of_mean_difference": 0.11760218441486359,
+    "baseline_mse": 10.523124694824219,
+    "explanation": "Trace of sample gradient covariance (sum of per-parameter variances). A fixed policy and paired held-out paths isolate baseline effects from policy learning. Measured reduction is evidence, not a universal guarantee."
+  },
+  "uniform_random_reference": {
+    "passed": null,
+    "episodes": 500,
+    "mean": 22.782,
+    "std": 12.057797311283684,
+    "mean_discounted_return": 12.854140281677246
+  },
+  "trace": {
+    "file": "first_ten_steps.csv",
+    "rows": 10,
+    "reset_seed": 9100000,
+    "torch_seed": 123456
+  }
+}

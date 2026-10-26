@@ -1,0 +1,1 @@
+Separate CartPole experiment: actor Adam learning rate 0.002; baseline Adam learning rate remains 0.01. Both methods, seeds 1668–1670, 8000 training episodes and 500 final evaluation episodes each. Original files and previous runs are preserved. CPU only. Run bash run.sh on deepdish.

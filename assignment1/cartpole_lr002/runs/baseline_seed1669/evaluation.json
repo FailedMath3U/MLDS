@@ -1,0 +1,15 @@
+{
+  "episodes": 500,
+  "seed_start": 9000000,
+  "stochastic_actions": true,
+  "mean": 296.648,
+  "population_std": 103.07160664314883,
+  "sample_std": 103.1748331153327,
+  "median": 284.0,
+  "min": 83.0,
+  "max": 500.0,
+  "fraction_500": 0.076,
+  "physical_terminations": 464,
+  "time_limit_truncations": 38,
+  "mean_discounted_return": 19.997081756591797
+}

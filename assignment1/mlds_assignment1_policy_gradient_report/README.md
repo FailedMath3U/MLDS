@@ -2,7 +2,7 @@
 
 `POLICY_GRADIENT_REPORT.pdf` is the combined report for Assignment 1's policy-gradient Parts 1 and 2. The shuttle section remains separately editable in `../mlds_assignment1_shuttle/SHUTTLE_REPORT.pdf`. `ASSIGNMENT1_FULL_REPORT.pdf` joins it with this report into one PDF for the full assignment.
 
-The report contains eight required plots: training rewards with 100-episode moving averages, and 500-episode evaluation histograms, for both environments with and without baselines. Main figures use final fixed-budget checkpoints; validation-selected Pong models are reported separately.
+The report contains eight required plots: training rewards with 100-episode moving averages, and 500-episode evaluation histograms, for both environments with and without baselines. Main figures use final fixed-budget checkpoints; The concise report also includes the controlled CartPole dip experiment and learning-rate comparisons at 0.01, 0.005 and 0.002. Auxiliary validation-selected Pong results remain in the saved experiment data.
 
 ## Build without training
 

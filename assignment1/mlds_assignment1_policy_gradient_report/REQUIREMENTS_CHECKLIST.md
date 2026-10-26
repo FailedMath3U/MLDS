@@ -28,3 +28,5 @@ Source: the user-provided mlds_assignment1.pdf. This combined document covers po
 - Review the notation, modeling choices, and saved traces before submission.
 
 The observed failure to learn winning Pong control is disclosed, not marked as successfully solving the task. Computational checks support specified algorithm behavior but cannot guarantee full marks or empirical optimality.
+
+Concise revision: 8-page policy-gradient report, organized by Part 1(a), Part 1(b), Part 2(a), Part 2(b), with all eight required plots, explicit notation, quantitative edge-case/gradient/baseline tests, controlled dip experiment, lower-rate comparisons, run instructions and three-month experiments. Detailed traces and operational records remain in the repository.
