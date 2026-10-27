@@ -4,10 +4,12 @@ Machine Learning and Decision Science coursework.
 
 ## Assignment 1 — reinforcement learning
 
-- **[Full assignment report, including shuttle (PDF)](assignment1/mlds_assignment1_policy_gradient_report/ASSIGNMENT1_FULL_REPORT.pdf)**
+- **[Full assignment report, revised from the user draft (PDF)](assignment1/mlds_assignment1_submission/ASSIGNMENT1_REPORT.pdf)**
+- [Full report LaTeX source](assignment1/mlds_assignment1_submission/ASSIGNMENT1_REPORT.tex)
+- [Draft changes and added validation](assignment1/mlds_assignment1_submission/README.md)
 - **[Combined CartPole + Pong report (PDF)](assignment1/mlds_assignment1_policy_gradient_report/POLICY_GRADIENT_REPORT.pdf)**
 - [Combined report LaTeX source](assignment1/mlds_assignment1_policy_gradient_report/POLICY_GRADIENT_REPORT.tex)
-- [Specification checklist](assignment1/mlds_assignment1_policy_gradient_report/REQUIREMENTS_CHECKLIST.md)
+- [Specification checklist](assignment1/mlds_assignment1_submission/REQUIREMENTS_CHECKLIST.md)
 - [Shuttle report (PDF)](assignment1/mlds_assignment1_shuttle/SHUTTLE_REPORT.pdf)
 
 The combined report covers basic policy gradient and baseline experiments for **both** CartPole-v1 and Pong-v5. The shuttle report remains separately editable; the full-assignment PDF joins both sections into one file for Canvas.

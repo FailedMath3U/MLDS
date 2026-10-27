@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "shuttle": {
+    "state_action_arrival_trials": 2010,
+    "transition_rows": 402,
+    "maximum_probability_row_error": 0.0,
+    "underfilled_dispatch_clears_queue": true,
+    "full_queue_wait_probability_at_200": 1.0,
+    "full_queue_dispatch_next": [
+      186,
+      187,
+      188,
+      189,
+      190
+    ]
+  },
+  "image_difference": {
+    "disappearing_pixel": -1,
+    "appearing_pixel": 1,
+    "stationary_paddle_difference_is_zero": true,
+    "source_images_unchanged": true
+  },
+  "original_files_unchanged": true,
+  "source_sha256": {
+    "mlds_assignment1_shuttle/shuttle.py": "a44d09cc89b453432de40f57d44f6ea064a80cbb6dcd1f698761b3ba5552286f",
+    "mlds_assignment1_shuttle/results/shuttle_results.npz": "9ca5a5cb4ba643e1f3c9af213555714200aca230abadbc2d2252e11886145ce2"
+  }
+}

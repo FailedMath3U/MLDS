@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\title{Adv Algs for ML: Assignment 1}
+\author{pstoilescu}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Value and Policy Iteration: Shuttle Problem}
+\subsection{Model}
+We will model the prescribed shuttle decision problem as a Markov decision process. Thus, we must specify the states, actions, transition probabilities (conditional on actions), rewards and the discount factor. The states $S$ are the number of passengers waiting at the station, i.e. one of the 201 elements of $\{0,\ldots,200\}$. The action set is the two element set given by either calling the shuttle or not. We denote an action by $a\in \{0,1\}$ with 0 representing not calling a shuttle and 1 representing calling one (we're \textbf{assuming} at most one shuttle can be called per decision epoch). After we've chosen our action for stage $t$, suppose we are in state $s_t$, then $\min(15,s_t)$ people will leave the queue at the bus station if we call the shuttle, and $A_t$ (i.i.d. uniform on $\{1,\ldots,5\}$) people will arrive. Here we will have to make an \textbf{assumption} to disambiguate the problem: we assume that the new arrivals come after the shuttle potentially picks up passengers. Thus the number will change by $A_t-\min(15a,s_t)$, before applying the 200 cap.
+
+So we define the random variable of the next state to be
+\[
+s_{t+1}(s_t,a)
+=
+\min\left(s_t-\min(15a,s_t)+A_t,\,200\right).
+\]
+
+Note that the transition probabilities are usually $1/5$ or $0$, unless we're close to the 200 cap.
+More precisely, for any $s_t, s_{t+1}\in S$
+\[
+P(s_{t+1}\mid s_t,a)
+=
+\frac{1}{5}
+\sum_{k=1}^{5}
+\mathbf{1}
+\left\{
+s_{t+1}
+=
+\min\left(s_t-\min(15a,s_t)+k,\,200\right)
+\right\}.
+\]
+Our rewards will be deterministic/non-random. We will \textbf{assume} that we will only incur the cost of passengers waiting who will not have been picked up by a shuttle by the next time step, and that we don't incur the cost of the ones who'll arrive by the next timestep. Given a state $t$ and action $a$ let $c(s,a)$ denote our cost. Then our reward will be $-c(s,a)$. For the sake of convenience we will not mention rewards for the rest of the section. So we will be talking about minimizing the cost rather than maximizing the reward (mathematically equivalent). Recall that the dispatch cost is $100a$ and the holding cost is $2\max(s-15a,0)$. Therefore
+\[c(s,a) = 100a + 2\max(s-15a,0) \]
+Recall that the discount factor has been specified to be $\gamma = 0.95$. Thus we have completely modeled our problem as a formal Markov decision process.
+
+\subsection{(a) Enumeration (Finite Horizon)}
+Given the requested plot and the 500 step limit, we assume that we're being asked to compute the optimal value at time 0 by enumerating the optimal values at all time steps using backward induction. Note that the optimal value we're computing is only an approximation of the optimal value of the MDP above; not only because of the finite horizon but because our implicit policy will change depending on the time. 
+
+We start by having our final values be 0. Then we iteratively apply the Bellman rule, i.e. that the optimal cost is recursively given by
+$$J_t(s) = \min_a  \left[ c(s,a) + E(J_{t+1}(s_{t+1}(s_t,a))\right], $$
+to compute all the expected costs backwards. By the definition of $s_{t+1}$ our program computes the expectation as the mean of 5 values. This avoids the exponential complexity of computing the cost for all sequences of actions. So for each time step we compute the optimal value for all states before computing the previous timestep. Thus we end up with the optimal cost at the initial time for all possible states. Thus to compute the optimal cost for a single state is roughly as computationally intensive as computing it for all states. So the following plot is useful for validation even if you were only interested in a single optimal value.
+
+
+$$J_t(s) = \min_{pi} E_{\pi} \left[ \sum_{u=t}^{499} \gamma^{u-t} c(s_u, a_u) \ | \  s_t = s \right] $$
+
+The general shape (increasing slope) is what we would expect since we can only send one shuttle at a time; so total cost will be quadratic (amount times duration stuck there). The cost is also positive even for 0 people at the start, which is what we should expect random people will almost certainly pop up, and we'll incur a cost either neglecting them or calling a shuttle. Thus, we've passed the most basic validity (sanity) checks for our algorithm.
+
+\subsection{(b) Policy Iteration (Infinite Horizon)}
+Now we compute the optimal cost of the MDP using the time invariance of it.
+We use Bellman updates to iteratively converge towards the optimal value function. Superscripts will denote iterations. Initialize $J^0(s)=0$ for all $s\in S$. Then if $\boldsymbol{s}(s,a)$ is the random variable for the next state
+\[ J^{n+1}(s) = \min_a \left[ c(s,a) + \gamma E(J^n (\boldsymbol{s}(s,a)) \right] \]
+Note that as $\boldsymbol{s}(s,a)$ is described above, the program computes the expectation as the mean of 5 values.
+It is mathematically guaranteed to converge sufficiently (change is less than $10^{-10}$ for all states) in a bounded amount of time (a function of $\gamma$). Then we terminate. In this case, empirically we need 518 updates. 
+%In this case of value iteration, the cost not only converges but stops changing. If it doesn't change for any state in an iteration, then it will never change. Hence we terminate the iteration and are guaranteed that this is the optimal cost.
+The plot for value iteration is almost identical to the plot for enumeration, which is what we should expect since $500$ is large relative to $\gamma = 0.95$. This consistency validates our independent numerical experiments.
+
+\subsection{Policy Iteration (Infinite Horizon)}
+Policy iteration is an alternating process. Given a policy $\pi$ (in this case a function from states to actions) we iteratively evaluate it
+as the the sufficiently converged result of
+\[ J^{n+1}_{\pi}(s) = c(s,\pi(s)) + \gamma E(J^n (\boldsymbol{s}(s,a)). \]
+It's actually implemented using the $J$ vector (for all states) and the transition probability matrices. A theorem guarantees that this converges to the cost under $\pi$. We again terminate when the change in all the entries is less than $10^{-10}$. We call the resulting cost (or near-so) vector $J_\pi$.
+Then we see if we can greedily improve the policy by defining a new policy 
+\[ \pi(s) = \arg \min_a   \left[ c(s,a) + \gamma E(J^*_\pi (\boldsymbol{s}(s,a)))\right]\]
+It is guaranteed that this policy is at least as low cost as $\pi$. 
+We can then apply the previous iterative procedure to compute the cost. Then alternate back into policy iteration. Repeating this, we are guaranteed to converge to the optimal policy. Since the policy is in this case necessarily discrete, we are guaranteed to arrive at the policy. This is when we get the same policy back from policy improvement.
+We can thus plot the optimal policy by plotting whether it'll dispatch or not at a given number of customers waiting.
+
+
+It is mathematically evident that the optimal policy will be dispatching whenever we're above a certain threshold and otherwise waiting. And the plot agrees with this, which is an good sanity check. It is also not hard to see that since $2*15(\sum^\infty_{i=0}  \gamma^{-i}) = 600 > 100$ the optimal policy threshold is at most 15. If the cost of waiting times the number of waiters is sufficiently high relative to $\gamma$, it might even make sense to order a shuttle when you have less than 15. Thus the threshold has face validity. We had ChatGPT do an independent mathematical calculation (without RL) and it confirmed that the threshold is 13.
+
+\subsection{Edge Cases}
+We prevent partially filled shuttles from causing underflow, i.e. negative customer counts by using $\max(s-15a,0)$.
+
+Because we can't go above 200, some implementations may have transition probabilities not sum to 1. We handled this via our more complicated formula which is guaranteed to sum to 1. 
+
+We made sure that for the 501st time step $J_{500}=0,$ $\pi_{500}=0$  and passengers top being added, preventing ghost continuation. 
+
+\subsection{Validation and Correctness Tests}
+Value iteration and policy iteration selected the same actions for all 201 states in the initial timestep. The differences of the values was at most $10^{-12}$. This serves as a correctness test since these are independent code snippets that mathematically should give the same optimal value. The maximum difference between two action costs at any time step was 3.778 meaning that numerical errors are unlikely to change the optimal action in the initial timestep.
+
+We can also compare the results of the 500 epoch enumeration with the infinite horizon values. The maximum difference was $5 \times 10^{-9}$. The largest possible cost per timestep is 470, so a theoretical upper bound on the difference between the 500 horizon and infinite timestep is
+\[ 470 \sum_{t=500}^\infty \gamma^{t} < 7 \times 10^{-8}\]
+But the observed difference is $5\times 10^{-9}$, which is consistent with the above. This is also reflected by the visual impression that our two plots are virtually identical.
+
+We have also checked that the queue never becomes negative or above 200. We also checked that dispatching with at most 15 leaves 0 before arrivals and that dispatching with 16 leaves 1. We checked that waiting at 200 still leads to 200 in the queue. We've checked that at zero passengers, our policy prefers to wait rather than dispatch.
+
+\subsection{Validation With an Additional 3 months}
+
+\section{Policy Gradient}
+{REINFORCE}
+Given a differentiably parametrized family of policies $\{ \pi_\theta\}_\theta$, for a MDP, we can optimize the parameters to maximize the expected value under that policy. One such class of methods are called policy gradient methods; they're based on stochastic gradient optimization of the hard-to-compute return function. The most basic such algorithm is called REINFORCE. Given a $\theta$ we want to nudge it to improve expected value under the parametrized policy. We will find an easy to compute unbiased estimator of the return under $\pi_\theta$ given actions and states and do stochastic gradient optimization using that. We sample a sequence of states and actions $S_t$ and $A_t$ (an episode), following the policy $\pi_\theta$, we call the future value from timestep $t$ of such a sequence $G_t$. Thus $G_t$ is an unbiased estimator of $Q_{\pi_\theta}(S_t, A_t)$. Then we use $G_t \nabla_\theta \log(\pi_\theta(S_t, A_t)$ as our gradient, where intuitively log corrects for the fact that we want to nudge rarely seen $(S_t,A_t)$ more since we'll be nudging them less often (there is a mathematical derivation). We could use standard stochastic gradient ascent, but the assignment specifies the Adam optimizer. Hence given a stepsize $\alpha > 0$ use the gradient as input into the Adam optimizer, for each $(S_t,A_t)$ in the sequence used to compute $G_t$.
+\subsection{CartPole Model}
+The cartpole is modeled as a continuous space, discrete action, and effectively discrete time (0.02 s timesteps). The state space is the position of the cart, velocity of the cart, angle of the pole and rate of change of the angle of the pole, plus an absorbing state representing a horizontal pole. The action is to apply a force of 10 Newtons either left or right. The transition rules are entirely deterministic, a simple application of Newton's laws. The reward is +1 for every timestep it stays out of the terminal absorbing state. The discount factor is $\gamma = 0.95$ which is appropriate since this game doesn't involve any long term consequences.
+
+\subsection{CartPole Policy}
+We will use a parametrized policy given by a neural network (MLP) that directly takes the state's 4 parameters as its input layer. There is one hidden layer with tanh activation functions. Then the final layer gives logits, which are passed through softmax to determine the probability of accelerating left or right.
+
+\subsection{CartPole REINFORCE results}
+Because each episode is randomly sampled from the policy, there is a huge amount of variance between episodes from even the same policy, let alone slightly changing policies per epsiode. Thus we needed plot the 100 average return, to reduce the noise and have any trend apparent. But we still have to wonder if this is sufficient. So I plotted the 100 average of episode returns, and although it still wobbled around the policy value, it was sufficiently flat relative to the significant changes in our REINFORCE plot. Thus we've validated that our training improvement is not just sampling noise.
+As we can see in the plots, the training initially improves but is very unstable. We've experimented with smaller step sizes but then although the growth is much more stable, it is also much more slow. We will see that REINFORCE with a good baseline gives much steadier training gains with the same speed. This is because it's also an unbiased estimator of the expected return, but with lower variance.
+
+\subsection{CartPole Edge Cases}
+We tested that the game really ends when the angle reaches a certain value or the cart leaves its allowed range. The final transition still received a +1 reward, which we incorporated into the return.
+
+The timelimit is 500 and we terminated the episode there if the it hadn't already failed. We tested that the episode actually terminated and that our return reset. 
+
+We updated by using the gradient for 32 episodes. We weigh all gradients for all choices equally. If we were to instead weigh episodes inversely proportional to their length (so in some sense equally), then we would be not have an unbiased estimator of the policy gradient.
+
+\subsection{CartPole Validation and Correctness Checks}
+
+\subsection{CartPole 3 Additional Months}
+
+\subsection{Pong Model}
+We're preprocessing the pong game. We use a cropped and downsampled $80\times 80$ grid of binary pixels. Furthermore to capture the direction of the ball, the model uses the difference between consecutive images. So our state space implicitly contains the direction the ball is moving. Although if the paddle is stationary (possible at the boundary), the difference is 0 so the paddle diapears. But the policy can just learn not to do that, so it shouldn't hinder our model. The two possible actions are to move your paddle 8 downsampled pixels in either directions. Because of the downsampling and the potentially hidden puck, it is a partially observable Markov decision process, not a strict MDP. The state transition probabilities are determined by the pong-v5 game. We get a reward of 1 when we score and -1 when the opponent scores. Note that our implementation is model-free: we only care about our observed states (partial information), action and rewards. We do not directly use or compute any probabilities. We use a discount factor of $\gamma = 0.99$'
+presumably because we need to think more ahead than for the CartPole problem. The game ends whenever a player reaches a score of 21 or the time limit. We can think of this as an absorbing state. Also one timestep for our model is 4 timesteps for the Pong-v5 emulator.
+
+\subsection{Pong Policy}
+Our parametized policy will be a fully-connected feedforward neural network with layers of size $80^2=6400$, 200 and then 2. We use ReLU as our activation functions for computing the middle layer activations. Then we use a linear layer applied to those to get 2 logits which are fed into softmax to get our final probabilities for our two actions.
+
+\subsection{Pong REINFORCE results}
+
+We used a learning rate of $\alpha = 0.001$ and the Adam optimizer to train our policy neural network. As you can see, we got significant improvements, but have still not achieved the maximum theoretical performance.
+
+\subsection{Pong Edge Cases, Validation and Correctness Checks}
+Some student implementations may end an epsisode whenever someone scores, but we made sure to calculate $G_t$ using the full episode until one player gets 21 points. For example we manually tested that the rewards $(0,1,0,-1)$ give $G_t$ values of $(0.0197, 0.0199, -0.99, -1)$.  So our program accords with our mathematical calculation to many significant figures. 
+
+A game can end through termination or a time limit. We tested that we don't continue to compute returns past the game end in either situation.
+
+The first frame has no precessor, potentially causing a problem when we want to feed in the difference into our neural network. We approach this by feeding in the image with all zeros into our neural network for the first move. It doesn't really matter anyway.
+
+Another edgecase is that we need negative values in our image vectors, so we made sure to use signed arithmetic, since otherwise there may have been overflow errors.
+
+Normally players serve by using the FIRE command. But here our bot couldn't play fire. This was not a problem as we ran tests and all the games terminated by scoring events. The game specs don't mention what happens if we use FIRE.
+
+If the paddle tries to move into the boundary it becomes stationary, so it disappears from the difference image. However the policy will get negative rewards if it tries to move into the boundary and then doesn't get out by moving in the opposite direction.
+
+Pong-v5 has sticky actions that can repeat the previous action regardless of the chosen action. We had no choice but to retain them. Because we actually move 4 Pong-v5 actions per model action, this results in at least one of our 4 actions being ignored but the rest executed. This should have a fairly small effect because in the next model timestep, the model can see where it ended up and act using that.
+
+
+
+\subsection{}
+
+\section{Policy Gradient with Baseline}
+A baseline is just an amount we subtract off of $G_t$ independent of the rest of the episode. This doesn't change the expectation of the gradient but changes it's variance. The right choice of baseline will reduce the variance. We can pick a constant baseline or predict an baseline based on the action and state with e.g. a neural network. For CartPole we will use a neural network and for Pong a constant.
+
+\subsection{CartPole Baseline}
+We use a new new neural network with input thh state and the time (dived by 500). We have a 64 node hidden layer with $\tanh$ activation functions. Then we have a single output node that tries to predict $G_t$. We train it with 5 Adam steps with learning rate $0.01$ to minimize MSE (since we want to avoid huge updates to our original NN). We update our actor model after completing our batch of 32 episodes.
+
+The plot of undiscounted training reward is smoother now but it has roughly the same performance. This is what we should expect from the Theory. 
+
+\subsection{Pong Baseline}
+Here we use an exponential moving average of past baselines with a newly calculated terms using only this batch's returns. For a given state that we visited we compute this new term using the discounted sum of the future $G_t$s in that episode, divided by the sum of the discount factors. 
+
+
+The plot is fairly similar to the one without a baseline, which is what we would expect since the original had almost no variance.
+
+\subsection{Edge Cases, Correctness Checks and Validation}
+If the rewards are all 0, then the our chosen baselines should be 0. We tested this in both the CartPole and Pong case.
+
+Setting all the baselines to 0 recovers the REINFORCE.
+
+We made sure to update our baseline after we updated our policy, otherwise our baseline would depend on the samples episodes.
+
+If the rewards for all actions are 1 and the games terminate, then the baselines should converge to 1, and our gradients should be 0. This is unlike the case without a baseline.
+
+\subsection{3 More Months}
+\end{document}

@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "gpus_used": 0,
+  "evidence": {
+    "cart_zero_baseline_recovers_reinforce": {
+      "max_gradient_difference": 0.0,
+      "episodes": 16
+    },
+    "cart_zero_reward_baseline_fit": {
+      "fitting_episodes": 64,
+      "heldout_episodes": 64,
+      "target": 0.0,
+      "adam_steps": 400,
+      "adam_lr": 0.01,
+      "heldout_mse_before": 0.10071276873350143,
+      "heldout_mse_after": 1.3059863022135687e-06,
+      "heldout_prediction_mean": -0.0001437034079572186
+    },
+    "cart_zero_returns_zero_baseline_gradient_norm": 0.0,
+    "cart_one_step_unit_return_baseline_fit": {
+      "fitting_episodes": 64,
+      "heldout_episodes": 64,
+      "target": 1.0,
+      "adam_steps": 400,
+      "adam_lr": 0.01,
+      "heldout_mse_before": 0.6640421152114868,
+      "heldout_mse_after": 6.541937658255392e-09,
+      "heldout_prediction_mean": 1.0000189542770386
+    },
+    "cart_exact_unit_baseline_gradient_norm": 0.0,
+    "cart_one_step_action_independent_objective": {
+      "expected_score_gradient_norm": 1.4823218918991188e-07,
+      "individual_score_gradient_norms": [
+        1.7618815898895264,
+        1.984215259552002
+      ],
+      "objective": 1.0,
+      "exact_baseline_gradient_norm": 0.0
+    },
+    "pong_zero_baseline_recovers_reinforce": {
+      "max_gradient_difference": 0.0
+    },
+    "pong_zero_returns_zero_baseline_gradient_norm": 0.0,
+    "pong_exact_unit_baseline_gradient_norm": 0.0,
+    "pong_zero_reward_ema_from_zero": {
+      "one_step_reward": 0.0,
+      "initial_baseline": 0.0,
+      "updates": 1,
+      "observed_baseline": 0.0,
+      "predicted_baseline": 0.0,
+      "note": "Repeated fixed synthetic data tests EMA mechanics, not on-policy learning performance."
+    },
+    "pong_zero_reward_ema_from_nonzero": {
+      "one_step_reward": 0.0,
+      "initial_baseline": 2.0,
+      "updates": 160,
+      "observed_baseline": 0.0005455151821543249,
+      "predicted_baseline": 0.0005455151821543253,
+      "note": "Repeated fixed synthetic data tests EMA mechanics, not on-policy learning performance."
+    },
+    "pong_unit_one_step_return_ema": {
+      "one_step_reward": 1.0,
+      "initial_baseline": 0.0,
+      "updates": 160,
+      "observed_baseline": 0.9997272424089227,
+      "predicted_baseline": 0.9997272424089229,
+      "note": "Repeated fixed synthetic data tests EMA mechanics, not on-policy learning performance."
+    },
+    "pong_normal_termination": {
+      "length": 1008,
+      "score": -21.0,
+      "terminated": true,
+      "truncated": false,
+      "final_reward": -1.0,
+      "final_return": -1.0,
+      "no_steps_after_end": true,
+      "first_input_all_zero": true
+    },
+    "pong_external_time_limit": {
+      "length": 1,
+      "score": 0.0,
+      "terminated": false,
+      "truncated": true,
+      "final_reward": 0.0,
+      "final_return": 0.0,
+      "no_steps_after_end": true,
+      "first_input_all_zero": true
+    }
+  },
+  "original_sources_unchanged": true,
+  "source_sha256": {
+    "mlds_assignment1_cartpole/cartpole.py": "ab6606726e0ce613c0aef9449afebef6ebb332adb986f4067d214f01824174bf",
+    "mlds_assignment1_cartpole/validate.py": "e7659f31cab63d03223eb328d0d61494e7317e1bc900b8d68c25bbb693c5ce08",
+    "mlds_assignment1_pong/pong_core.py": "c33a3d428c9eb919fe6df45f34e0c9e003c06477da6eed2964e835a77892bed7",
+    "mlds_assignment1_pong/pong_env.py": "1f2b5bcd2a27b6541f8a38b0aed9181e4ea5ee9121fc21410db625cf891c6ba3",
+    "mlds_assignment1_pong/run_pong.py": "de3629c6323d5593d30b8582aa5990c642c72cb6e8f6d9cd6b9e58362b7f6f9f"
+  }
+}
