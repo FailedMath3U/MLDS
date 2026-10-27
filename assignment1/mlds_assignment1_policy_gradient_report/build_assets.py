@@ -98,6 +98,30 @@ metrics['cartpole_untrained_reference']=readjson(CART/'runs/no_baseline_seed1668
 pr=readjson(PONG/'references/untrained.json')
 metrics['pong_untrained_reference']={k:v for k,v in pr.items() if k!='episodes'}
 metrics['pong_untrained_reference']['mean_discounted_return']=float(np.mean([e['discounted_return'] for e in pr['episodes']]))
+metrics['cartpole_task_validation']=readjson(CART/'task_validation/results.json')
+assert metrics['cartpole_task_validation']['original_hashes_unchanged']
+assert metrics['cartpole_task_validation']['boundary_checks']['trials_passed']==16
+metrics['cartpole_instability']=readjson(CART/'instability_experiment/results.json')
+metrics['cartpole_rate_comparison']={}
+rate_rows=[]
+for rate,folder in [(.01,CART),(.005,ROOT.parent/'cartpole_lr005'),(.002,ROOT.parent/'cartpole_lr002')]:
+ if not folder.exists() and rate==.005:folder=ROOT.parent/'cartpole_lr005_executed'
+ means={}
+ for mode in MODES:
+  values=[]
+  for seed in SEEDS:
+   directory=folder/'runs'/f'{mode}_seed{seed}'
+   config=readjson(directory/'config.json')
+   scores=np.loadtxt(directory/'evaluation_rewards.csv',skiprows=1)
+   evaluation=readjson(directory/'evaluation.json')
+   assert config['lr']==rate and config['episodes']==8000 and len(scores)==500
+   assert config['batch_size']==32 and config['gamma']==.95
+   assert np.isclose(scores.mean(),evaluation['mean'],atol=1e-12)
+   if mode=='baseline':assert config['baseline_lr']==.01
+   values.append(float(scores.mean()))
+  means[mode]={'seed_means':values,'mean':float(np.mean(values))}
+ metrics['cartpole_rate_comparison'][str(rate)]=means
+ rate_rows.append(f'{rate:g} & {means["no_baseline"]["mean"]:.3f} & {means["baseline"]["mean"]:.3f} '+chr(92)*2)
 metrics['audits']=['All six CartPole runs contain 8000 training episodes and 500 evaluations.',
  'Both Pong runs contain 20000 training games and 500 complete final-policy evaluations.',
  'All primary means and population SDs independently recomputed from individual rewards.',
@@ -105,7 +129,9 @@ metrics['audits']=['All six CartPole runs contain 8000 training episodes and 500
  'Required discounts, learning rates, episode counts and environments verified.',
  'All eight required plots generated from complete episode logs and final-policy rewards.',
  'CartPole validation assertions and Pong preflight assertions passed.',
- 'Pong checkpoint selection provenance confirms test scores were not used for selection.']
+ 'Pong checkpoint selection provenance confirms test scores were not used for selection.',
+ 'All eighteen CartPole learning-rate run means recomputed from 500-episode reward files.',
+ 'Supplementary task validation passed, with original code and primary actors unchanged.']
 
 # Compact supplementary trace tables, using actual saved decisions.
 trace=readcsv(CART/'validation/first_ten_steps.csv')
@@ -129,6 +155,10 @@ for mode,prefix in [('no_baseline','Basic'),('baseline','Baseline')]:
 macro('CartVarianceReduction',f'{100*cv["frozen_policy_gradient_variance"]["variance_reduction_fraction"]:.2f}')
 macro('PongInitialVarianceReduction',f'{100*(1-pp["checks"]["initial_gradient_variance_measurement"]["variance_ratio"]):.2f}')
 macro('PongReferenceDiscounted',f'{metrics["pong_untrained_reference"]["mean_discounted_return"]:.6f}')
+edge=metrics['cartpole_task_validation']
+macro('BatchGradientError',f'{edge["collector_checks"]["batch_vs_mean_episode_gradient_max_absolute_error"]:.3g}')
+macro('PositiveAdvantageProbability',f'{edge["advantage_sign_checks"][0]["after"]:.6f}')
+macro('NegativeAdvantageProbability',f'{edge["advantage_sign_checks"][1]["after"]:.6f}')
 (ROOT/'metrics_macros.tex').write_text('\n'.join(tex)+'\n')
 (ROOT/'cartpole_seed_rows.tex').write_text('\n'.join(cart_table)+'\n')
 (ROOT/'cartpole_trace_rows.tex').write_text('\n'.join(cart_trace)+'\n')
@@ -141,6 +171,16 @@ for row in chosen:
 defs=[]
 for command,file in [('CartSeedRows','cartpole_seed_rows.tex'),('CartTraceRows','cartpole_trace_rows.tex'),('PongVarianceRows','pong_variance_rows.tex'),('PongTraceRows','pong_trace_rows.tex')]:
  defs.append('\\newcommand{\\'+command+'}{%\n'+(ROOT/file).read_text().rstrip()+'%\n}')
+defs.append('\\newcommand{\\CartRateRows}{%\n'+'\n'.join(rate_rows)+'%\n}')
+control_rows=[]
+for name,label in [('always_left','Always left'),('always_right','Always right'),('no_baseline','Basic, greedy'),('baseline','Baseline, greedy')]:
+ values=[]
+ for condition in ('default','tilted_outward','near_track_edge'):
+  entry=next(r for r in edge['controls']['results'] if r['policy']==name and r['condition']==condition)
+  assert entry['episodes']==64
+  values.append(f'{entry["mean"]:.2f}')
+ control_rows.append(label+' & '+' & '.join(values)+' '+chr(92)*2)
+defs.append('\\newcommand{\\CartControlRows}{%\n'+'\n'.join(control_rows)+'%\n}')
 (ROOT/'table_defs.tex').write_text('\n'.join(defs)+'\n')
 (ROOT/'metrics.json').write_text(json.dumps(metrics,indent=2,allow_nan=False)+'\n')
 

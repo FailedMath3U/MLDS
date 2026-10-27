@@ -1,0 +1,6 @@
+episode,time,reward,return,terminated,truncated
+0,0,1.0,1.0,True,False
+1,0,1.0,1.0,False,True
+2,0,1.0,2.8524999618530273,False,False
+2,1,1.0,1.9500000476837158,False,False
+2,2,1.0,1.0,False,True

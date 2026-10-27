@@ -1,32 +1,32 @@
 # Assignment specification audit
 
-Source: the user-provided mlds_assignment1.pdf. This combined document covers policy-gradient Parts 1 and 2; the shuttle report is separate.
+Source: `mlds_assignment1.pdf`. The policy-gradient PDF is nine pages; the full PDF adds the unchanged seven-page shuttle report.
 
-| Requirement | Evidence / report location |
+| Assignment requirement | Concrete report evidence |
 |---|---|
-| GitHub username, repository name and link | Front page; FailedMath3U / MLDS / https://github.com/FailedMath3U/MLDS |
-| All code in GitHub | Repository includes all three assignment implementations, validation, plotting and report-generation source |
-| PyTorch policy-gradient implementation | CartPole cartpole.py; Pong pong_core.py and run_pong.py |
-| CartPole-v1, gamma 0.95 | Methods table and recorded config.json files |
-| Pong-v5, gamma 0.99, frames as input | Methods, Pong metadata, preflight; ALE/Pong-v5 canonical namespaced ID |
-| Pong actions restricted to 2 and 3 | Environment/worker assertions, preflight complete games, trace |
-| Adam 0.01 or explained alternative | CartPole 0.01; Pong 0.001; recorded one-update KL comparison, no claim 0.01 was proven unstable |
-| Training reward and 100-episode mean for each part | Four required training plots, complete logs, episodes start at 1 and mean at episode 100 |
-| 500 evaluation episodes, histogram, mean and SD | Four required histograms; means/SDs recomputed from individual rewards |
-| Part 2 repeats both environments with an explained baseline | Learned state/time baseline for CartPole; lagged constant EMA for Pong |
-| At most one GPU on deepdish | Pong single UUID and one main process; CartPole CPU with zero GPUs |
-| Edge cases per environment/method | Termination/truncation, reset leakage, preprocessing, point boundaries, baseline independence and clipping |
-| Algorithm validation beyond format/unit tests | Exact toy gradients, predictable modified returns, random/untrained comparisons, paired frozen-policy gradient variances, behavior traces |
-| Quantitative evidence and test instructions | Dedicated validation sections and reproducibility commands; JSON/CSV and model artifacts in repository |
-| Additional three months of experiments | Separate CartPole, Pong, and baseline investigation plans |
-| Labeled/formatted plots | Vector PDFs, units/score convention, captions, episode counts, moving-average window |
+| GitHub username, repository name and link | Page 1: FailedMath3U / MLDS / repository URL |
+| PyTorch basic policy gradient and discounted episodic objective | Section 1: objective, return-to-go, exact loss, batching and optimizer settings |
+| CartPole-v1, discount 0.95 | Section 2 and saved configs |
+| Pong-v5, frames, discount 0.99, actions 2/3 only | Section 3: namespaced ID, visual processing, partial observation and restrictions |
+| Adam 0.01 or explained alternative | CartPole 0.01; Pong 0.001 with measured one-update comparison and limited interpretation |
+| Training reward + 100-episode moving mean | Figures 1, 3, 5 and 7, generated from complete raw logs |
+| 500 evaluations, histogram, mean and SD | Figures 2, 4, 6 and 8; final fixed-budget policies; stochastic action selection stated |
+| Repeat both tasks with an explained baseline | Sections 4 and 5: learned state/time critic and prior-batch scalar EMA |
+| One GPU on deepdish | Section 1 and execution instructions; CPU-only CartPole and one-GPU Pong |
+| Edge cases and how handled | Section 6: signed physical crossings, both end flags, shortest/mixed episodes; Section 7: scoring/serving, sticky actions, signed differencing/reset |
+| Quantitative validation beyond basic format checks | Fixed-direction controls, targeted recovery starts, frozen-policy noise experiment, exact-gradient predictions, paired baseline variance, learning-rate experiments |
+| Baseline validation for Part 2 | Both advantage signs; exact expected-gradient invariance; independent-fit versus actual-training variance clearly distinguished |
+| Directions explaining each validation experiment | Section 9: exact commands, purpose, output folders; source READMEs provide seed/sample details |
+| Additional three months | Section 10: concrete questions and controlled comparisons for both games and baselines |
+| All code used provided | Repository includes original algorithms, supplementary validators, plotting, all lower-rate suites and report builders |
 
-## Remaining submission actions
+## Limits stated in the report
 
-- Give the marker access to the private GitHub repository.
-- Use ASSIGNMENT1_FULL_REPORT.pdf for a single PDF including the shuttle section, or use the policy-gradient-only PDF if submitting that section separately.
-- Review the notation, modeling choices, and saved traces before submission.
+- Neither Pong final policy won any of its 500 evaluation games.
+- One Pong training seed cannot establish method superiority.
+- A one-update KL comparison does not prove long-run learning-rate stability.
+- Baseline variance reduction at an initial actor does not prove it throughout training; actual Pong EMA probes did not consistently reduce variance.
+- CartPole stress checks use greedy actors and exploratory modified starts, separately from the required stochastic evaluations.
+- Frozen-dip bootstrap intervals condition on selected checkpoints, not uncertainty across training seeds.
 
-The observed failure to learn winning Pong control is disclosed, not marked as successfully solving the task. Computational checks support specified algorithm behavior but cannot guarantee full marks or empirical optimality.
-
-Concise revision: 8-page policy-gradient report, organized by Part 1(a), Part 1(b), Part 2(a), Part 2(b), with all eight required plots, explicit notation, quantitative edge-case/gradient/baseline tests, controlled dip experiment, lower-rate comparisons, run instructions and three-month experiments. Detailed traces and operational records remain in the repository.
+The private GitHub repository must be accessible to the marker. Use `ASSIGNMENT1_FULL_REPORT.pdf` for the full submission or the policy-gradient PDF for that section alone.

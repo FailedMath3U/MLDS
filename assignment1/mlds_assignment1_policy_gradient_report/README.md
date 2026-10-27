@@ -1,29 +1,32 @@
-# Combined CartPole and Pong report
+# Assignment 1: CartPole and Pong report
 
-`POLICY_GRADIENT_REPORT.pdf` is the combined report for Assignment 1's policy-gradient Parts 1 and 2. The shuttle section remains separately editable in `../mlds_assignment1_shuttle/SHUTTLE_REPORT.pdf`. `ASSIGNMENT1_FULL_REPORT.pdf` joins it with this report into one PDF for the full assignment.
+`POLICY_GRADIENT_REPORT.pdf` is the nine-page report for policy-gradient Parts 1 and 2. `ASSIGNMENT1_FULL_REPORT.pdf` joins it to the unchanged seven-page shuttle report for a single 16-page submission.
 
-The report contains eight required plots: training rewards with 100-episode moving averages, and 500-episode evaluation histograms, for both environments with and without baselines. Main figures use final fixed-budget checkpoints; The concise report also includes the controlled CartPole dip experiment and learning-rate comparisons at 0.01, 0.005 and 0.002. Auxiliary validation-selected Pong results remain in the saved experiment data.
+The report follows the assigned tasks: Part 1(a) CartPole, Part 1(b) Pong, and both repeated with explicit baselines. All eight required plots use final fixed-budget policies: raw training rewards plus 100-episode means, and histograms of 500 stochastic evaluations. GitHub identity, run instructions, model choices, quantitative validation and the three-month experiment plan are included.
 
-## Build without training
+## Rebuild without training
 
-With the experiment folders beside this folder:
+Keep this folder beside the original CartPole/Pong projects and the `cartpole_lr005`/`cartpole_lr002` projects. For the original Downloads layout, the builder also recognizes `cartpole_lr005_executed`.
 
 ```bash
-python -m pip install numpy matplotlib
+python -m pip install -r requirements.txt
 python build_assets.py
 tectonic POLICY_GRADIENT_REPORT.tex
+python combine_submission.py
 ```
 
-Alternatively run `pdflatex POLICY_GRADIENT_REPORT.tex` twice, after generating the assets. Wait for `build_assets.py` to finish before compiling: it writes all eight figure files.
+Wait for the asset builder to finish before compiling. Alternatively use pdfLaTeX twice. The builder recomputes all main means and population SDs, audits all eighteen CartPole learning-rate runs, reads task validation and instability experiments, and generates numerical macros/tables and eight vector figures. Derived evidence is saved to `metrics.json`. Repository identity is read from `submission.json`.
 
-`submission.json` contains the actual GitHub identity and repository URL. `build_assets.py` writes numerical macros, tables and metadata from recorded results, independently verifies per-episode means and population standard deviations, and regenerates figures. `metrics.json` preserves the derived values and source validation evidence.
+The standalone LaTeX ZIP includes generated tables, macros and figures and compiles without Python. Rebuilding numerical assets needs the full repository.
 
-The standalone LaTeX ZIP includes all generated tables, figures and metadata, so it compiles without Python or the experiment directories. To rebuild numerical assets, use the full repository.
+## Validation evidence emphasized in this revision
 
-## Scope and interpretation
+- Task-specific signed boundary crossings, simultaneous failure/time-limit flags, shortest and unequal-length episodes, and positive/negative advantage signs: `../mlds_assignment1_cartpole/validate_task_edges.py` and `task_validation/`.
+- Fixed-direction negative controls and targeted recovery conditions, explicitly evaluated greedily and kept separate from required stochastic tests.
+- Exact original-run replay, paired frozen-checkpoint evaluations, and 2,000-episode fixed-policy controls for training dips.
+- Controlled actor-rate comparisons at 0.01, 0.005 and 0.002, retaining all three seeds.
+- Exact-gradient predictions, complete-game collection with actions 2/3, return calculation across Pong scoring events, and paired baseline-gradient variance.
 
-CartPole's primary basic model reached 500 in all 500 evaluations, but other seeds varied. Pong training completed without either method learning to win: all 500 final-policy evaluations per method were losses. The report does not substitute job completion for task success or selectively omit unfavorable variance measurements.
+The report distinguishes a local independent-fit variance benefit from variance reduction during actual training. It treats Pong as partially observed and makes no claim that FIRE is redundant. **Neither final Pong policy won an evaluation game.** Correctness controls do not establish successful task learning or adequate tuning.
 
-The GitHub repository is private. Ensure the marker can access it before Canvas submission. Include the separate shuttle section when assembling the complete assignment submission.
-
-To recreate the complete single-PDF assignment, install pypdf and run `python combine_submission.py`. This preserves vector figures and resolves internal named links before joining the two reports.
+All original training/evaluation artifacts were preserved. Reports are local and in the private GitHub repository, not copied to deepdish. The marker needs access to that repository.

@@ -121,7 +121,9 @@
     "Required discounts, learning rates, episode counts and environments verified.",
     "All eight required plots generated from complete episode logs and final-policy rewards.",
     "CartPole validation assertions and Pong preflight assertions passed.",
-    "Pong checkpoint selection provenance confirms test scores were not used for selection."
+    "Pong checkpoint selection provenance confirms test scores were not used for selection.",
+    "All eighteen CartPole learning-rate run means recomputed from 500-episode reward files.",
+    "Supplementary task validation passed, with original code and primary actors unchanged."
   ],
   "cartpole_validation": {
     "analytic_discounted_returns": {
@@ -572,6 +574,775 @@
     "reset_base": 3000000,
     "action_base": 3100000,
     "mean_discounted_return": -1.3091799882240593
+  },
+  "cartpole_task_validation": {
+    "device": "cpu",
+    "gpus_used": 0,
+    "boundary_checks": {
+      "boundary_trials": [
+        {
+          "kind": "cart",
+          "sign": -1,
+          "location": "exact",
+          "action": 0,
+          "initial_state": [
+            -2.4,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            -2.4000000953674316,
+            -0.19512194395065308,
+            0.0,
+            0.2926829159259796
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": -1,
+          "location": "exact",
+          "action": 1,
+          "initial_state": [
+            -2.4,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            -2.4000000953674316,
+            0.19512194395065308,
+            0.0,
+            -0.2926829159259796
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": -1,
+          "location": "crossing",
+          "action": 0,
+          "initial_state": [
+            -2.39,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            -2.4100000858306885,
+            -1.1951220035552979,
+            0.0,
+            0.2926829159259796
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": -1,
+          "location": "crossing",
+          "action": 1,
+          "initial_state": [
+            -2.39,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            -2.4100000858306885,
+            -0.8048780560493469,
+            0.0,
+            -0.2926829159259796
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": 1,
+          "location": "exact",
+          "action": 0,
+          "initial_state": [
+            2.4,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            2.4000000953674316,
+            -0.19512194395065308,
+            0.0,
+            0.2926829159259796
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": 1,
+          "location": "exact",
+          "action": 1,
+          "initial_state": [
+            2.4,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            2.4000000953674316,
+            0.19512194395065308,
+            0.0,
+            -0.2926829159259796
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": 1,
+          "location": "crossing",
+          "action": 0,
+          "initial_state": [
+            2.39,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            2.4100000858306885,
+            0.8048780560493469,
+            0.0,
+            0.2926829159259796
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "cart",
+          "sign": 1,
+          "location": "crossing",
+          "action": 1,
+          "initial_state": [
+            2.39,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "next_state": [
+            2.4100000858306885,
+            1.1951220035552979,
+            0.0,
+            -0.2926829159259796
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": -1,
+          "location": "exact",
+          "action": 0,
+          "initial_state": [
+            0.0,
+            0.0,
+            -0.20943951023931953,
+            0.0
+          ],
+          "next_state": [
+            0.0,
+            -0.19159932434558868,
+            -0.20943951606750488,
+            0.21999259293079376
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": -1,
+          "location": "exact",
+          "action": 1,
+          "initial_state": [
+            0.0,
+            0.0,
+            -0.20943951023931953,
+            0.0
+          ],
+          "next_state": [
+            0.0,
+            0.19741412997245789,
+            -0.20943951606750488,
+            -0.3507762849330902
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": -1,
+          "location": "crossing",
+          "action": 0,
+          "initial_state": [
+            0.0,
+            0.0,
+            -0.2,
+            -1.0
+          ],
+          "next_state": [
+            0.0,
+            -0.19196894764900208,
+            -0.2199999988079071,
+            -0.776195228099823
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": -1,
+          "location": "crossing",
+          "action": 1,
+          "initial_state": [
+            0.0,
+            0.0,
+            -0.2,
+            -1.0
+          ],
+          "next_state": [
+            0.0,
+            0.19715116918087006,
+            -0.2199999988079071,
+            -1.3482407331466675
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": 1,
+          "location": "exact",
+          "action": 0,
+          "initial_state": [
+            0.0,
+            0.0,
+            0.20943951023931953,
+            0.0
+          ],
+          "next_state": [
+            0.0,
+            -0.19741412997245789,
+            0.20943951606750488,
+            0.3507762849330902
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": 1,
+          "location": "exact",
+          "action": 1,
+          "initial_state": [
+            0.0,
+            0.0,
+            0.20943951023931953,
+            0.0
+          ],
+          "next_state": [
+            0.0,
+            0.19159932434558868,
+            0.20943951606750488,
+            -0.21999259293079376
+          ],
+          "terminated": false,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": 1,
+          "location": "crossing",
+          "action": 0,
+          "initial_state": [
+            0.0,
+            0.0,
+            0.2,
+            1.0
+          ],
+          "next_state": [
+            0.0,
+            -0.19715116918087006,
+            0.2199999988079071,
+            1.3482407331466675
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        },
+        {
+          "kind": "pole",
+          "sign": 1,
+          "location": "crossing",
+          "action": 1,
+          "initial_state": [
+            0.0,
+            0.0,
+            0.2,
+            1.0
+          ],
+          "next_state": [
+            0.0,
+            0.19196894764900208,
+            0.2199999988079071,
+            0.776195228099823
+          ],
+          "terminated": true,
+          "truncated": false,
+          "reward": 1.0
+        }
+      ],
+      "trials_passed": 16,
+      "simultaneous_failure_and_limit": {
+        "terminated": true,
+        "truncated": true,
+        "reward": 1.0
+      }
+    },
+    "collector_checks": {
+      "lengths": [
+        1,
+        1,
+        3
+      ],
+      "first_episode_return": 1.0,
+      "batch_vs_mean_episode_gradient_max_absolute_error": 1.862645149230957e-09,
+      "prediction": "Batch gradient equals mean of individual episode gradients; no post-end steps or cross-episode returns."
+    },
+    "advantage_sign_checks": [
+      {
+        "target": 1.0,
+        "baseline": 0.0,
+        "advantage": 1.0,
+        "before": 0.5,
+        "after": 0.5049998760223389
+      },
+      {
+        "target": 1.0,
+        "baseline": 2.0,
+        "advantage": -1.0,
+        "before": 0.5,
+        "after": 0.4950002133846283
+      }
+    ],
+    "controls": {
+      "action_selection": "greedy for trained actors; fixed actions for controls",
+      "selection": "Exploratory stress conditions, chosen after observing original results. No retraining or hyperparameter selection.",
+      "conditions": "Default resets; pole angle +/-0.15 rad with outward angular velocity +/-0.5 rad/s; cart position +/-2.3 with outward velocity +/-0.5 m/s. Signs alternate, other components retain default seeded reset values.",
+      "results": [
+        {
+          "condition": "default",
+          "policy": "always_left",
+          "episodes": 64,
+          "mean": 9.34375,
+          "population_std": 0.7749747979773278,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "default",
+          "policy": "always_right",
+          "episodes": 64,
+          "mean": 9.375,
+          "population_std": 0.7180703308172536,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "default",
+          "policy": "no_baseline",
+          "episodes": 64,
+          "mean": 469.765625,
+          "population_std": 44.91197717045393,
+          "fraction_500": 0.609375,
+          "physical_failures": 25
+        },
+        {
+          "condition": "default",
+          "policy": "baseline",
+          "episodes": 64,
+          "mean": 283.609375,
+          "population_std": 43.25022297178796,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "tilted_outward",
+          "policy": "always_left",
+          "episodes": 64,
+          "mean": 9.5,
+          "population_std": 5.5,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "tilted_outward",
+          "policy": "always_right",
+          "episodes": 64,
+          "mean": 9.5,
+          "population_std": 5.5,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "tilted_outward",
+          "policy": "no_baseline",
+          "episodes": 64,
+          "mean": 488.4375,
+          "population_std": 24.10515699492538,
+          "fraction_500": 0.796875,
+          "physical_failures": 13
+        },
+        {
+          "condition": "tilted_outward",
+          "policy": "baseline",
+          "episodes": 64,
+          "mean": 284.765625,
+          "population_std": 137.32724854652616,
+          "fraction_500": 0.109375,
+          "physical_failures": 57
+        },
+        {
+          "condition": "near_track_edge",
+          "policy": "always_left",
+          "episodes": 64,
+          "mean": 7.75,
+          "population_std": 1.8285923547909742,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "near_track_edge",
+          "policy": "always_right",
+          "episodes": 64,
+          "mean": 7.78125,
+          "population_std": 1.8495670946197114,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "near_track_edge",
+          "policy": "no_baseline",
+          "episodes": 64,
+          "mean": 8.703125,
+          "population_std": 0.8418671120640121,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        },
+        {
+          "condition": "near_track_edge",
+          "policy": "baseline",
+          "episodes": 64,
+          "mean": 13.328125,
+          "population_std": 1.837582374854254,
+          "fraction_500": 0.0,
+          "physical_failures": 64
+        }
+      ]
+    },
+    "original_hashes_unchanged": true,
+    "original_sha256": {
+      "cartpole.py": "ab6606726e0ce613c0aef9449afebef6ebb332adb986f4067d214f01824174bf",
+      "validate.py": "e7659f31cab63d03223eb328d0d61494e7317e1bc900b8d68c25bbb693c5ce08",
+      "runs/no_baseline_seed1668/last.pt": "f6ee8d2802599329b9fa80cc8ff7dcec6cfe5f88de390a82a92380032a5c7d88",
+      "runs/baseline_seed1668/last.pt": "59fd0122b2f2d9b63eec9f748e0856d84141a99cfffe4a6b2905a0b1f078ff83"
+    }
+  },
+  "cartpole_instability": {
+    "plan": {
+      "training_seed": 1668,
+      "checkpoints": {
+        "no_baseline": [
+          5120,
+          6400,
+          6912,
+          8000
+        ],
+        "baseline": [
+          3072,
+          6144,
+          6912,
+          8000
+        ]
+      },
+      "evaluation_episodes_per_checkpoint": 500,
+      "frozen_control_episodes": 2000,
+      "evaluation_reset_base": 9400000,
+      "evaluation_action_base": 34000000,
+      "control_reset_base": 9500000,
+      "control_action_base": 35000000,
+      "bootstrap_replicates": 5000,
+      "selection": "Exploratory: checkpoints chosen from the already observed training logs, before any new evaluation outcomes.",
+      "hypothesis": "If the dip is only fixed-policy episode noise, held-out means at before/during checkpoints should not show a large change. A frozen high-performing policy supplies a sampling-only comparison.",
+      "original_files_modified": false,
+      "device": "cpu",
+      "gpus_used": 0
+    },
+    "methods": {
+      "no_baseline": {
+        "replay": {
+          "all_8000_rewards_identical": true,
+          "number_different_rewards": 0,
+          "final_weights_identical": true,
+          "final_weight_hash": "ded640c62876435a488a2d5aff90d1dc08f9a09c892d213090cd62ec9efa770e",
+          "original_weight_hash": "ded640c62876435a488a2d5aff90d1dc08f9a09c892d213090cd62ec9efa770e",
+          "seconds": 20.775908026844263
+        },
+        "checkpoints": {
+          "5120": {
+            "mean": 453.108,
+            "sd": 85.80981491647677,
+            "mean_bootstrap_95ci": [
+              445.4619,
+              460.27
+            ],
+            "min": 148.0,
+            "max": 500.0,
+            "count": 500,
+            "fraction_at_500": 0.678
+          },
+          "6400": {
+            "mean": 83.114,
+            "sd": 28.96385685643402,
+            "mean_bootstrap_95ci": [
+              80.592,
+              85.60235
+            ],
+            "min": 29.0,
+            "max": 128.0,
+            "count": 500,
+            "fraction_at_500": 0.0
+          },
+          "6912": {
+            "mean": 401.706,
+            "sd": 121.59858372530496,
+            "mean_bootstrap_95ci": [
+              391.204,
+              411.99615
+            ],
+            "min": 104.0,
+            "max": 500.0,
+            "count": 500,
+            "fraction_at_500": 0.5
+          },
+          "8000": {
+            "mean": 500.0,
+            "sd": 0.0,
+            "mean_bootstrap_95ci": [
+              500.0,
+              500.0
+            ],
+            "min": 500.0,
+            "max": 500.0,
+            "count": 500,
+            "fraction_at_500": 1.0
+          }
+        },
+        "paired_comparisons": {
+          "during_minus_before": {
+            "mean_difference": -369.994,
+            "paired_standard_error": 3.9590554641652433,
+            "paired_bootstrap_95ci": [
+              -377.4302,
+              -362.0378
+            ],
+            "pairs": 500
+          },
+          "final_minus_during": {
+            "mean_difference": 416.886,
+            "paired_standard_error": 1.2966003056861473,
+            "paired_bootstrap_95ci": [
+              414.358,
+              419.45805
+            ],
+            "pairs": 500
+          }
+        },
+        "frozen_control": {
+          "snapshot_training_episodes": 5120,
+          "episodes": 2000,
+          "mean": 451.0655,
+          "sd": 87.11684228523208,
+          "frozen_100episode_mean_min": 430.11,
+          "frozen_100episode_mean_max": 472.2900000000001,
+          "continued_training_100episode_mean_min": 74.64,
+          "continued_training_100episode_mean_max": 446.83,
+          "comparison": "Same policy frozen throughout control; fresh independent seeds. Continued-training series uses original subsequent 2000 episodes. Rolling windows overlap; their range is descriptive, not a p-value."
+        }
+      },
+      "baseline": {
+        "replay": {
+          "all_8000_rewards_identical": true,
+          "number_different_rewards": 0,
+          "final_weights_identical": true,
+          "final_weight_hash": "463adc72cdb7ca0b1d1208feeb260b3418e0622f05331bd99b619b17facb1427",
+          "original_weight_hash": "463adc72cdb7ca0b1d1208feeb260b3418e0622f05331bd99b619b17facb1427",
+          "seconds": 24.654780582059175
+        },
+        "checkpoints": {
+          "3072": {
+            "mean": 440.466,
+            "sd": 76.27555862791172,
+            "mean_bootstrap_95ci": [
+              433.49925,
+              447.11015000000003
+            ],
+            "min": 140.0,
+            "max": 500.0,
+            "count": 500,
+            "fraction_at_500": 0.472
+          },
+          "6144": {
+            "mean": 215.686,
+            "sd": 33.300081141042284,
+            "mean_bootstrap_95ci": [
+              212.85785,
+              218.64215
+            ],
+            "min": 87.0,
+            "max": 350.0,
+            "count": 500,
+            "fraction_at_500": 0.0
+          },
+          "6912": {
+            "mean": 298.66,
+            "sd": 57.33198409265111,
+            "mean_bootstrap_95ci": [
+              293.72375,
+              303.61245
+            ],
+            "min": 86.0,
+            "max": 500.0,
+            "count": 500,
+            "fraction_at_500": 0.002
+          },
+          "8000": {
+            "mean": 257.564,
+            "sd": 52.501522873151025,
+            "mean_bootstrap_95ci": [
+              252.95195,
+              262.30645
+            ],
+            "min": 87.0,
+            "max": 472.0,
+            "count": 500,
+            "fraction_at_500": 0.0
+          }
+        },
+        "paired_comparisons": {
+          "during_minus_before": {
+            "mean_difference": -224.78,
+            "paired_standard_error": 3.7185877682233017,
+            "paired_bootstrap_95ci": [
+              -231.88604999999998,
+              -217.43570000000003
+            ],
+            "pairs": 500
+          },
+          "final_minus_during": {
+            "mean_difference": 41.878,
+            "paired_standard_error": 1.8057218764222747,
+            "paired_bootstrap_95ci": [
+              38.34195,
+              45.4
+            ],
+            "pairs": 500
+          }
+        },
+        "frozen_control": {
+          "snapshot_training_episodes": 3072,
+          "episodes": 2000,
+          "mean": 436.5245,
+          "sd": 80.997551813311,
+          "frozen_100episode_mean_min": 412.99999999999994,
+          "frozen_100episode_mean_max": 453.82000000000005,
+          "continued_training_100episode_mean_min": 211.37,
+          "continued_training_100episode_mean_max": 467.14,
+          "comparison": "Same policy frozen throughout control; fresh independent seeds. Continued-training series uses original subsequent 2000 episodes. Rolling windows overlap; their range is descriptive, not a p-value."
+        }
+      }
+    }
+  },
+  "cartpole_rate_comparison": {
+    "0.01": {
+      "no_baseline": {
+        "seed_means": [
+          500.0,
+          271.824,
+          483.886
+        ],
+        "mean": 418.57
+      },
+      "baseline": {
+        "seed_means": [
+          260.308,
+          360.516,
+          349.94
+        ],
+        "mean": 323.588
+      }
+    },
+    "0.005": {
+      "no_baseline": {
+        "seed_means": [
+          177.988,
+          191.758,
+          119.788
+        ],
+        "mean": 163.178
+      },
+      "baseline": {
+        "seed_means": [
+          392.058,
+          294.68,
+          386.244
+        ],
+        "mean": 357.66066666666666
+      }
+    },
+    "0.002": {
+      "no_baseline": {
+        "seed_means": [
+          210.784,
+          323.362,
+          207.16
+        ],
+        "mean": 247.10199999999998
+      },
+      "baseline": {
+        "seed_means": [
+          247.482,
+          296.648,
+          249.312
+        ],
+        "mean": 264.48066666666665
+      }
+    }
   },
   "pong_trace": {
     "first_decision": {
