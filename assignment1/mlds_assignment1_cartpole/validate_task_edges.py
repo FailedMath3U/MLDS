@@ -111,57 +111,12 @@ def advantage_sign_checks():
     return records
 
 
-def controls():
-    # Greedy and constant policies are explicitly separate from the main
-    # assignment's stochastic 500-episode evaluations.
-    actors={}
-    for mode in ('no_baseline','baseline'):
-        obj=torch.load(ROOT/f'runs/{mode}_seed1668/last.pt',map_location='cpu',weights_only=True)
-        model=cp.network();model.load_state_dict(obj['policy']);model.eval();actors[mode]=model
-    rows=[]
-    conditions={'default':None,'tilted_outward':(.15,.5),'near_track_edge':(2.3,.5)}
-    for condition,setting in conditions.items():
-        for i in range(64):
-            reset_seed=9800000+i;sign=-1 if i%2==0 else 1
-            for name in ('always_left','always_right','no_baseline','baseline'):
-                env=gym.make('CartPole-v1');state,_=env.reset(seed=reset_seed)
-                if setting is not None:
-                    state=state.astype(np.float64)
-                    if condition=='tilted_outward':state[2:4]=[sign*setting[0],sign*setting[1]]
-                    else:state[:2]=[sign*setting[0],sign*setting[1]]
-                    env.unwrapped.state=state.copy();state=state.astype(np.float32)
-                steps=0;total=0.
-                with torch.inference_mode():
-                    while True:
-                        action=(0 if name=='always_left' else 1) if name.startswith('always') else int(actors[name](torch.from_numpy(state)).argmax())
-                        state,reward,term,trunc,_=env.step(action);steps+=1;total+=reward
-                        if term or trunc:break
-                env.close()
-                rows.append({'condition':condition,'policy':name,'reset_seed':reset_seed,'sign':sign,
-                             'reward':total,'terminated':bool(term),'truncated':bool(trunc)})
-    with (OUT/'control_rollouts.csv').open('w',newline='') as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
-    summary=[]
-    for condition in conditions:
-        for name in ('always_left','always_right','no_baseline','baseline'):
-            part=[r for r in rows if r['condition']==condition and r['policy']==name]
-            values=np.array([r['reward'] for r in part])
-            summary.append({'condition':condition,'policy':name,'episodes':len(part),'mean':float(values.mean()),
-                            'population_std':float(values.std()),'fraction_500':float(np.mean(values==500)),
-                            'physical_failures':sum(r['terminated'] for r in part)})
-    return {'action_selection':'greedy for trained actors; fixed actions for controls',
-            'selection':'Exploratory stress conditions, chosen after observing original results. No retraining or hyperparameter selection.',
-            'conditions':'Default resets; pole angle +/-0.15 rad with outward angular velocity +/-0.5 rad/s; cart position +/-2.3 with outward velocity +/-0.5 m/s. Signs alternate, other components retain default seeded reset values.',
-            'results':summary}
-
-
 def main():
     OUT.mkdir(exist_ok=True);cp.set_seed(8877)
     protected=[ROOT/'cartpole.py',ROOT/'validate.py']+[ROOT/f'runs/{mode}_seed1668/last.pt' for mode in ('no_baseline','baseline')]
     before={str(p.relative_to(ROOT)):digest(p) for p in protected}
     report={'device':'cpu','gpus_used':0,'boundary_checks':boundary_checks(),
-            'collector_checks':collector_checks(cp.network()),'advantage_sign_checks':advantage_sign_checks(),
-            'controls':controls()}
+            'collector_checks':collector_checks(cp.network()),'advantage_sign_checks':advantage_sign_checks()}
     after={str(p.relative_to(ROOT)):digest(p) for p in protected}
     assert before==after
     report['original_hashes_unchanged']=True;report['original_sha256']=before

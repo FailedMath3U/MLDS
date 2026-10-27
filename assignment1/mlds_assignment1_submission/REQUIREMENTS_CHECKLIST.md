@@ -1,4 +1,4 @@
-# Assignment checklist for the user-draft report
+# Assignment checklist for the final report
 
 | Required item | Where addressed |
 |---|---|

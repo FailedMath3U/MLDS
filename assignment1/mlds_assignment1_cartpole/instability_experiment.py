@@ -15,7 +15,7 @@ from cartpole import set_seed,network,collect,packed,GAMMA
 
 ROOT=Path(__file__).resolve().parent
 OUT=ROOT/'instability_experiment'
-CHECKPOINTS={'no_baseline':(5120,6400,6912,8000),'baseline':(3072,6144,6912,8000)}
+CHECKPOINTS={'no_baseline':(5120,6400)}
 
 def writecsv(path,rows):
  with path.open('w',newline='') as f:
@@ -129,9 +129,9 @@ def main():
                     'min':float(values.min()),'max':float(values.max()),'count':500,
                     'fraction_at_500':float(np.mean(values==500))}
    print('EVALUATION',mode,n,results[str(n)],flush=True)
-  before,during,recovered,final=CHECKPOINTS[mode]
+  before,during=CHECKPOINTS[mode]
   paired={}
-  for key,a,b in [('during_minus_before',during,before),('final_minus_during',final,during)]:
+  for key,a,b in [('during_minus_before',during,before)]:
    difference=scores[a]-scores[b]
    paired[key]={'mean_difference':float(difference.mean()),'paired_standard_error':float(difference.std(ddof=1)/np.sqrt(500)),
                 'paired_bootstrap_95ci':bootstrap_mean(difference,202+a),'pairs':500}

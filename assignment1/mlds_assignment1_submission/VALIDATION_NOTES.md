@@ -1,6 +1,6 @@
 # Report claims and evidence
 
-| Claim in the draft | Existing or added evidence | How it checks the claim |
+| Report claim | Existing or added evidence | How it checks the claim |
 |---|---|---|
 | Shuttle service and saturation | Existing boundary checks; added `validate_shuttle_and_images.py` | Independently computes every scalar transition/cost and pooled probability mass, across all 201 states, two actions and five arrivals |
 | No continuation after decision 499 | Existing `finite_terminal_condition`, `last_period_is_myopic` | Terminal costs zero; final-period values/actions equal analytic immediate-cost minima; no policy exists at time 500 |

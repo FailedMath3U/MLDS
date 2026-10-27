@@ -11,3 +11,21 @@ venv/
 *.pid
 *.lock
 .DS_Store
+
+# Generated/auxiliary output outside the final submission.
+assignment1/mlds_assignment1_cartpole/results/
+assignment1/mlds_assignment1_shuttle/results/figures/
+assignment1/mlds_assignment1_pong/plots/
+assignment1/mlds_assignment1_pong/runs/*/validation/
+assignment1/mlds_assignment1_pong/runs/*/best_validation.pt
+assignment1/mlds_assignment1_pong/runs/*/evaluation/test_selected*
+assignment1/mlds_assignment1_pong/runs/*/evaluation/selected_provenance.json
+assignment1/mlds_assignment1_pong/checkpoints/
+assignment1/mlds_assignment1_pong/*.pid
+assignment1/mlds_assignment1_pong/diagnostics/no_baseline_*
+assignment1/mlds_assignment1_pong/diagnostics/*_trace*
+assignment1/mlds_assignment1_pong/preflight/*trace*
+assignment1/mlds_assignment1_pong/references/*trace*
+assignment1/mlds_assignment1_pong/runs/*/evaluation/*_trace*
+assignment1/mlds_assignment1_pong/status.json
+assignment1/mlds_assignment1_pong/summary.json

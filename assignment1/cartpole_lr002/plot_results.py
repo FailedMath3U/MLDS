@@ -1,4 +1,4 @@
-"""Plot all six completed runs; original artifacts are not modified."""
+"""Plot the three basic-method runs cited in the report."""
 from pathlib import Path
 import csv
 import json
@@ -14,7 +14,7 @@ DEST=ROOT/'results/figures'
 def main():
     DEST.mkdir(parents=True,exist_ok=True)
     summary=[]
-    for mode in ('no_baseline','baseline'):
+    for mode in ('no_baseline',):
         fig,axes=plt.subplots(3,2,figsize=(11,9),layout='constrained')
         for row,seed in enumerate((1668,1669,1670)):
             folder=ROOT/'runs'/f'{mode}_seed{seed}'

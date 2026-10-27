@@ -13,6 +13,8 @@ fi
 export CUDA_VISIBLE_DEVICES=''
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
-"$python_bin" "$task_dir/cartpole.py" suite --episodes 8000 --batch-size 32 --lr 0.005 | tee "$task_dir/suite.log"
-"$python_bin" "$task_dir/validate.py" | tee "$task_dir/validation.log"
+for seed in 1668 1669 1670; do
+  "$python_bin" "$task_dir/cartpole.py" train --mode no_baseline --seed "$seed" --episodes 8000 --batch-size 32 --lr 0.005
+  "$python_bin" "$task_dir/cartpole.py" evaluate --checkpoint "$task_dir/runs/no_baseline_seed$seed/last.pt"
+done
 "$python_bin" "$task_dir/plot_results.py"

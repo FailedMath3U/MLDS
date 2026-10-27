@@ -102,7 +102,7 @@ print(json.dumps(v,indent=2))
 md('''## Validation and a ten-decision trace
 The validation script tests hand-computed returns, an exactly enumerable policy-gradient example, the direction of a rewarded-action update, environment reproducibility, physical termination, and time-limit truncation. The trace exposes the complete four-component state, right-action probability, sampled action, and reward. A high probability does not force that action because the policy remains stochastic.
 
-These are reproducible computational checks. The independent investigation for your own report can use this trace to calculate or predict a few steps and examine whether the policy's decisions make sense.''')
+These are reproducible computational checks. The trace can be used to calculate or predict a few steps and inspect the policy's decisions.''')
 code('''rows=['| Experiment | Passed |','|---|---|']
 for name,entry in validation.items():
     if entry.get('passed') is not None:
@@ -118,7 +118,7 @@ display(Markdown('\\n'.join(rows)))
 md('''## Limitations and next experiments
 The primary no-baseline model achieved 500 in every evaluation episode, but other seeds did not. A lower-variance estimator did not guarantee better evaluation scores. Also, with gamma 0.95, long episode discounted returns approach 20, even when their undiscounted scores differ substantially. For a trajectory of length T and reward +1 per step, the discounted return is `(1 - 0.95**T)/0.05`.
 
-Further experiments should use more training seeds, independent tuning/evaluation seeds, learning-rate and batch-size sweeps, critic-fitting ablations, gradient-variance measurements at several policy checkpoints, and stress tests under changed initial states or physics. See `CARTPOLE_REPORT.tex` / PDF for the full discussion.''')
+Further experiments should use more training seeds, independent tuning/evaluation seeds, learning-rate and batch-size sweeps, critic-fitting ablations, gradient-variance measurements at several policy checkpoints, and stress tests under changed initial states or physics. See `../mlds_assignment1_submission/ASSIGNMENT1_REPORT.pdf` for the report.''')
 notebook=nb.v4.new_notebook(cells=cells,metadata={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'}})
 path=root/'cartpole_plots.ipynb';nb.write(notebook,path)
 k=Path('/tmp/mlds-cartpole-jupyter/kernels/python3');k.mkdir(parents=True,exist_ok=True)

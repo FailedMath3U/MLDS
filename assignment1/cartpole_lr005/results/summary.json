@@ -22,29 +22,5 @@
     "mean": 119.788,
     "population_std": 33.304099687576,
     "fraction_500": 0.0
-  },
-  {
-    "mode": "baseline",
-    "seed": 1668,
-    "lr": 0.005,
-    "mean": 392.058,
-    "population_std": 96.52507775702644,
-    "fraction_500": 0.28
-  },
-  {
-    "mode": "baseline",
-    "seed": 1669,
-    "lr": 0.005,
-    "mean": 294.68,
-    "population_std": 93.82863955104538,
-    "fraction_500": 0.076
-  },
-  {
-    "mode": "baseline",
-    "seed": 1670,
-    "lr": 0.005,
-    "mean": 386.244,
-    "population_std": 89.62736448205983,
-    "fraction_500": 0.218
   }
 ]

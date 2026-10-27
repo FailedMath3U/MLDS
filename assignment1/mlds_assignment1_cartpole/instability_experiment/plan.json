@@ -3,15 +3,7 @@
   "checkpoints": {
     "no_baseline": [
       5120,
-      6400,
-      6912,
-      8000
-    ],
-    "baseline": [
-      3072,
-      6144,
-      6912,
-      8000
+      6400
     ]
   },
   "evaluation_episodes_per_checkpoint": 500,
