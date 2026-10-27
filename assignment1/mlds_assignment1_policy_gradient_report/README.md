@@ -1,6 +1,6 @@
 # Assignment 1: CartPole and Pong report
 
-`POLICY_GRADIENT_REPORT.pdf` is the nine-page report for policy-gradient Parts 1 and 2. `ASSIGNMENT1_FULL_REPORT.pdf` joins it to the unchanged seven-page shuttle report for a single 16-page submission.
+`POLICY_GRADIENT_REPORT.pdf` is the nine-page report for policy-gradient Parts 1 and 2. `ASSIGNMENT1_FULL_REPORT.pdf` joins it to the revised four-page shuttle report for a single 13-page submission.
 
 The report follows the assigned tasks: Part 1(a) CartPole, Part 1(b) Pong, and both repeated with explicit baselines. All eight required plots use final fixed-budget policies: raw training rewards plus 100-episode means, and histograms of 500 stochastic evaluations. GitHub identity, run instructions, model choices, quantitative validation and the three-month experiment plan are included.
 

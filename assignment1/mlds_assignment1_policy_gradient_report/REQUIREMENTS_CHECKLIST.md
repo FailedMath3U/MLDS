@@ -1,6 +1,6 @@
 # Assignment specification audit
 
-Source: `mlds_assignment1.pdf`. The policy-gradient PDF is nine pages; the full PDF adds the unchanged seven-page shuttle report.
+Source: `mlds_assignment1.pdf`. The policy-gradient PDF is nine pages; the full PDF adds the revised four-page shuttle report.
 
 | Assignment requirement | Concrete report evidence |
 |---|---|

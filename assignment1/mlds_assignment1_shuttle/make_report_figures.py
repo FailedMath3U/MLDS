@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import numpy as np
+from shuttle import Model, action_costs, evaluate_policy
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -32,9 +33,31 @@ ax.set_xticks(range(3),['0','15','200'])
 ax.set(xlabel='Initial passengers waiting',ylabel='Discounted cost',xlim=(-.3,2.3))
 ax.legend(fontsize=9,loc='upper left')
 fig.savefig(out/'validation_rollouts.pdf');plt.close(fig)
-print('Generated four report figures.')
-p=root/'SHUTTLE_REPORT.tex'
-t=p.read_text().replace('\\graphicspath{{results/figures/}}','\\graphicspath{{results/report_figures/}}')
-for w in ('0.77','0.88','0.82'):
- t=t.replace('width='+w+'\\linewidth','width=0.90\\linewidth')
-p.write_text(t)
+# Audit saved solutions and derive report numbers without rewriting solver outputs.
+model=Model()
+assert s['model']=={'capacity':15,'dispatch_cost':100.0,'holding_cost':2.0,
+                   'max_queue':200,'gamma':.95,'arrivals':[1,2,3,4,5]}
+assert d['finite_costs'].shape==(501,201)
+assert d['finite_policy'].shape==(500,201)
+assert np.array_equal(d['pi_policy'],(d['states']>=13).astype(int))
+assert np.array_equal(d['vi_policy'],d['pi_policy'])
+assert all(v['passed'] for v in s['validation'].values())
+q=action_costs(model,d['pi_cost'])
+full_policy=(d['states']>=15).astype(int)
+full_value=evaluate_policy(model,full_policy)
+metrics={'threshold_action_costs':{str(i):{'wait':float(q[i,0]),'dispatch':float(q[i,1])}
+                                  for i in (12,13)},
+         'cost_at_zero_optimal':float(d['pi_cost'][0]),
+         'cost_at_zero_wait_until_full':float(full_value[0]),
+         'wait_until_full_extra_cost':float(full_value[0]-d['pi_cost'][0]),
+         'vi_residual':float(np.max(abs(action_costs(model,d['vi_cost']).min(axis=1)-d['vi_cost']))),
+         'policy_iteration_residual':s['validation']['bellman_optimality']['residual'],
+         'validation_count':len(s['validation'])}
+(root/'results/report_metrics.json').write_text(json.dumps(metrics,indent=2)+'\n')
+macros=[]
+for name,value in [('FullShuttleCost',full_value[0]),('OptimalEmptyCost',d['pi_cost'][0]),
+                   ('WaitCostTwelve',q[12,0]),('DispatchCostTwelve',q[12,1]),
+                   ('WaitCostThirteen',q[13,0]),('DispatchCostThirteen',q[13,1])]:
+ macros.append('\\newcommand{\\'+name+'}{'+f'{value:.3f}'+'}')
+(root/'report_metrics.tex').write_text('\n'.join(macros)+'\n')
+print('Generated four report figures and audited report metrics; original solver outputs preserved.')

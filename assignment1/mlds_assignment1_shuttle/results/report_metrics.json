@@ -1,0 +1,18 @@
+{
+  "threshold_action_costs": {
+    "12": {
+      "wait": 672.8921633807239,
+      "dispatch": 676.6701677662195
+    },
+    "13": {
+      "wait": 680.7698310199388,
+      "dispatch": 676.6701677662195
+    }
+  },
+  "cost_at_zero_optimal": 576.6701677662196,
+  "cost_at_zero_wait_until_full": 597.3559752698384,
+  "wait_until_full_extra_cost": 20.685807503618776,
+  "vi_residual": 9.913492249324918e-11,
+  "policy_iteration_residual": 9.094947017729282e-13,
+  "validation_count": 14
+}
