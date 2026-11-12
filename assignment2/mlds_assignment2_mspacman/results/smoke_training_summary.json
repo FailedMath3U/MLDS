@@ -1,9 +1,0 @@
-{
-  "completed": true,
-  "episodes": 6,
-  "steps": 3666,
-  "updates": 885,
-  "seconds": 30.733333587646484,
-  "last_100_mean": 458.3333333333333,
-  "best_validation_mean": 610.0
-}

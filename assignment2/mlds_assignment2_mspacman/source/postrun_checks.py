@@ -1,7 +1,7 @@
 """Short report-support computations; original held-out evaluation is not rerun.
 
 Runs a matched random-policy reference and one separately seeded diagnostic game.
-Writes numerical/image-array data only. Render plots and reports on the Mac.
+Writes numerical data only. Render plots and reports on the Mac.
 """
 import argparse
 import hashlib
@@ -13,7 +13,7 @@ import gymnasium as gym
 import numpy as np
 import torch
 
-from mspacman_dqn import (ENV_ID,ACTIONS,Game,load_model,preprocess,setup,
+from mspacman_dqn import (ENV_ID,ACTIONS,Game,load_model,setup,
                          summarize,write_json)
 
 
@@ -34,13 +34,11 @@ def random_reference(out):
         _,info=env.reset(seed=seed)
         score=0.
         length=0
-        rewards=[]
         while True:
             action=int(rng.integers(ACTIONS))
             _,r,term,trunc,info=env.step(action)
             score+=r
             length+=1
-            rewards.append(float(r))
             if term or trunc: break
         rows.append(dict(index=i,seed=seed,reward=score,length=length,
                          terminated=bool(term),truncated=bool(trunc),lives=int(info['lives'])))
@@ -58,20 +56,9 @@ def diagnostic_game(model,device,out):
     game=Game()
     state,info=game.reset(seed)
     rows=[]
-    frame_numbers=[]
-    images=[]
-    stacks=[]
     total=0.
     lives=int(info['lives'])
-    def snapshot(t,stack):
-        rgb=game.env.unwrapped.ale.getScreenRGB()
-        np.testing.assert_array_equal(preprocess(rgb),stack[-1])
-        frame_numbers.append(t)
-        images.append(rgb.copy())
-        stacks.append(stack.copy())
-    snapshot(0,state)
     t=0
-    first_positive=False
     while True:
         q=model(torch.as_tensor(state[None],device=device)).cpu().numpy()[0]
         random_action=bool(rng.random()<.01)
@@ -81,12 +68,8 @@ def diagnostic_game(model,device,out):
         new_lives=int(info['lives'])
         rows.append(dict(t=t,action=action,random_action=random_action,q_values=q.tolist(),
                          reward=r,cumulative_score=total,lives_before=lives,lives_after=new_lives,
-                         terminated=term,truncated=trunc,
-                         pixels_changed=int(np.count_nonzero(state[-1]!=ns[-1]))))
+                         terminated=term,truncated=trunc))
         t+=1
-        if t in [1,10,50,100] or t%250==0 or new_lives<lives or (r>0 and not first_positive):
-            snapshot(t,ns)
-        first_positive=first_positive or r>0
         state=ns
         lives=new_lives
         if term or trunc: break
@@ -104,12 +87,9 @@ def diagnostic_game(model,device,out):
                                 for r in positive[:10]],
                  greedy_action_checks=sum(not r['random_action'] for r in rows),
                  random_action_count=sum(r['random_action'] for r in rows),
-                 snapshots=len(images),preprocessing_matches_live_stack=True,
-                 changing_decisions=sum(r['pixels_changed']>0 for r in rows))
+                 )
     write_json(out/'diagnostic_trajectory.json',rows)
     write_json(out/'diagnostic_summary.json',summary)
-    np.savez_compressed(out/'diagnostic_images.npz',steps=np.asarray(frame_numbers),
-                        rgb=np.stack(images),stacks=np.stack(stacks))
     return summary
 
 

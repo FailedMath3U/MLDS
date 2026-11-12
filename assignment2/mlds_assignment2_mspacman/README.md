@@ -36,14 +36,13 @@ actions and is not fully greedy.
 python3 -m venv .venv-plots
 .venv-plots/bin/python -m pip install -r requirements-plots.txt
 .venv-plots/bin/python source/plot_results.py
-python3 source/audit_artifacts.py
 python3 source/mathematical_checks.py
 ```
 
-The plotting script generates eight figures and numerical metrics from saved
-data. The audit checks source/model hashes, score statistics, recorded action
-choices, and plot files. The mathematical checker writes numerical bounds and
-consistency results to `results/mathematical_checks.json`. None reruns gameplay.
+The plotting script generates the five figures used in the local report:
+training rewards, maximum Q-values, evaluation histogram, validation, and game
+length/points per 100 decisions. The mathematical checker checks the Q-value
+and batch-Huber bounds in `results/mathematical_checks.json`. Neither reruns gameplay.
 
 ## Reproduce computation using one Deepdish GPU
 
@@ -61,17 +60,17 @@ python mspacman_dqn.py evaluate --checkpoint runs/repeat/best.pt \
 python postrun_checks.py --checkpoint runs/repeat/best.pt --out checks_repeat
 ```
 
-The historical `source/run_nohup.sh` records the original remote paths and launch; adjust paths
-and use fresh output directories for a new run. Its pipeline lock and training
-commands protect existing outputs. For independent replication, use new training
-and evaluation seeds. Saved replay is not included, so exact training resumption
-is not promised.
+The preliminary checks exercise terminal Bellman targets, full games across life
+losses, and controlled terminal-reward learning. `postrun_checks.py` generates
+the matched random baseline and one diagnostic trajectory used for the Q bounds.
+Use fresh output folders; for independent replication, use new training and
+evaluation seeds. Replay is not saved, so exact training resumption is not promised.
 
 ## Files
 
-- `source/`: training, preprocessing/replay checks, numerical diagnostics, and plots.
+- `source/`: training, terminal/life-loss/learning checks, numerical bounds, and plots.
 - `results/seed1668/`: training data, configuration, validation history, and models.
 - `results/evaluation/`: original 500 trained-policy games and summary.
-- `results/report_checks/`: matched random games and diagnostic images/trajectory.
+- `results/report_checks/`: matched random games and diagnostic trajectory.
 - `results/preflight.json`: preliminary checks from the recorded computation.
-- `figures/`: the eight figures, each as PNG and vector PDF.
+- `figures/`: the five figures, each as PNG and vector PDF.
