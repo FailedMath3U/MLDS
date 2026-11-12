@@ -1,0 +1,2282 @@
+[
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 353.0,
+      "std_population": 129.77287852244012,
+      "min": 200.0,
+      "max": 610.0,
+      "median": 315.0,
+      "episode": 250,
+      "steps": 126122
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 250.0,
+        "length": 361,
+        "emulator_frames": 1441,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 260.0,
+        "length": 385,
+        "emulator_frames": 1537,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 610.0,
+        "length": 559,
+        "emulator_frames": 2233,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 310.0,
+        "length": 479,
+        "emulator_frames": 1913,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 250.0,
+        "length": 361,
+        "emulator_frames": 1441,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 360.0,
+        "length": 567,
+        "emulator_frames": 2265,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 410.0,
+        "length": 445,
+        "emulator_frames": 1777,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 560.0,
+        "length": 631,
+        "emulator_frames": 2521,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 320.0,
+        "length": 421,
+        "emulator_frames": 1681,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 200.0,
+        "length": 387,
+        "emulator_frames": 1545,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 511.0,
+      "std_population": 176.03692794411063,
+      "min": 380.0,
+      "max": 940.0,
+      "median": 425.0,
+      "episode": 500,
+      "steps": 255398
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 380.0,
+        "length": 419,
+        "emulator_frames": 1673,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 410.0,
+        "length": 521,
+        "emulator_frames": 2081,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 700.0,
+        "length": 603,
+        "emulator_frames": 2409,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 940.0,
+        "length": 675,
+        "emulator_frames": 2697,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 440.0,
+        "length": 597,
+        "emulator_frames": 2385,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 380.0,
+        "length": 457,
+        "emulator_frames": 1825,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 380.0,
+        "length": 457,
+        "emulator_frames": 1825,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 590.0,
+        "length": 651,
+        "emulator_frames": 2601,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 510.0,
+        "length": 509,
+        "emulator_frames": 2033,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 380.0,
+        "length": 465,
+        "emulator_frames": 1857,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1060.0,
+      "std_population": 453.4754679141971,
+      "min": 530.0,
+      "max": 2000.0,
+      "median": 1035.0,
+      "episode": 750,
+      "steps": 394238
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 970.0,
+        "length": 889,
+        "emulator_frames": 3553,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 640.0,
+        "length": 791,
+        "emulator_frames": 3161,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 2000.0,
+        "length": 615,
+        "emulator_frames": 2457,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1120.0,
+        "length": 671,
+        "emulator_frames": 2681,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 550.0,
+        "length": 679,
+        "emulator_frames": 2713,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1100.0,
+        "length": 717,
+        "emulator_frames": 2865,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1540.0,
+        "length": 901,
+        "emulator_frames": 3601,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 750.0,
+        "length": 791,
+        "emulator_frames": 3161,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1400.0,
+        "length": 1151,
+        "emulator_frames": 4601,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 530.0,
+        "length": 457,
+        "emulator_frames": 1825,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1245.0,
+      "std_population": 397.3977856002723,
+      "min": 600.0,
+      "max": 1780.0,
+      "median": 1260.0,
+      "episode": 1000,
+      "steps": 546058
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1200.0,
+        "length": 853,
+        "emulator_frames": 3409,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 600.0,
+        "length": 541,
+        "emulator_frames": 2161,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1090.0,
+        "length": 917,
+        "emulator_frames": 3665,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 730.0,
+        "length": 663,
+        "emulator_frames": 2649,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1620.0,
+        "length": 1037,
+        "emulator_frames": 4145,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 860.0,
+        "length": 687,
+        "emulator_frames": 2745,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1660.0,
+        "length": 863,
+        "emulator_frames": 3449,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1780.0,
+        "length": 975,
+        "emulator_frames": 3897,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1590.0,
+        "length": 1043,
+        "emulator_frames": 4169,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1320.0,
+        "length": 735,
+        "emulator_frames": 2937,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 887.0,
+      "std_population": 302.35905807499796,
+      "min": 400.0,
+      "max": 1240.0,
+      "median": 895.0,
+      "episode": 1250,
+      "steps": 706226
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 840.0,
+        "length": 565,
+        "emulator_frames": 2257,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 400.0,
+        "length": 479,
+        "emulator_frames": 1913,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 640.0,
+        "length": 515,
+        "emulator_frames": 2057,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 950.0,
+        "length": 745,
+        "emulator_frames": 2977,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 740.0,
+        "length": 531,
+        "emulator_frames": 2121,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 470.0,
+        "length": 401,
+        "emulator_frames": 1601,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1240.0,
+        "length": 719,
+        "emulator_frames": 2873,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1210.0,
+        "length": 761,
+        "emulator_frames": 3041,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1220.0,
+        "length": 743,
+        "emulator_frames": 2969,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1160.0,
+        "length": 641,
+        "emulator_frames": 2561,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 688.0,
+      "std_population": 217.06220306631,
+      "min": 530.0,
+      "max": 1200.0,
+      "median": 595.0,
+      "episode": 1500,
+      "steps": 871088
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 600.0,
+        "length": 457,
+        "emulator_frames": 1825,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 630.0,
+        "length": 453,
+        "emulator_frames": 1809,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1020.0,
+        "length": 765,
+        "emulator_frames": 3057,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 530.0,
+        "length": 473,
+        "emulator_frames": 1889,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 570.0,
+        "length": 457,
+        "emulator_frames": 1825,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 570.0,
+        "length": 513,
+        "emulator_frames": 2049,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 630.0,
+        "length": 483,
+        "emulator_frames": 1929,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1200.0,
+        "length": 837,
+        "emulator_frames": 3345,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 590.0,
+        "length": 499,
+        "emulator_frames": 1993,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 540.0,
+        "length": 453,
+        "emulator_frames": 1809,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1073.0,
+      "std_population": 336.78034384447085,
+      "min": 600.0,
+      "max": 1850.0,
+      "median": 1130.0,
+      "episode": 1750,
+      "steps": 1023094
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1180.0,
+        "length": 667,
+        "emulator_frames": 2665,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 700.0,
+        "length": 497,
+        "emulator_frames": 1985,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1140.0,
+        "length": 639,
+        "emulator_frames": 2553,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1150.0,
+        "length": 593,
+        "emulator_frames": 2369,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1060.0,
+        "length": 787,
+        "emulator_frames": 3145,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 600.0,
+        "length": 409,
+        "emulator_frames": 1633,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 720.0,
+        "length": 485,
+        "emulator_frames": 1937,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1120.0,
+        "length": 827,
+        "emulator_frames": 3305,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1210.0,
+        "length": 779,
+        "emulator_frames": 3113,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1850.0,
+        "length": 1141,
+        "emulator_frames": 4561,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1380.0,
+      "std_population": 442.33471489359727,
+      "min": 750.0,
+      "max": 2330.0,
+      "median": 1390.0,
+      "episode": 2000,
+      "steps": 1201608
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1400.0,
+        "length": 925,
+        "emulator_frames": 3697,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1250.0,
+        "length": 779,
+        "emulator_frames": 3113,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1770.0,
+        "length": 783,
+        "emulator_frames": 3129,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 2330.0,
+        "length": 1143,
+        "emulator_frames": 4569,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 850.0,
+        "length": 663,
+        "emulator_frames": 2649,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1000.0,
+        "length": 661,
+        "emulator_frames": 2641,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1380.0,
+        "length": 793,
+        "emulator_frames": 3169,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1620.0,
+        "length": 733,
+        "emulator_frames": 2929,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1450.0,
+        "length": 717,
+        "emulator_frames": 2865,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 750.0,
+        "length": 503,
+        "emulator_frames": 2009,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1325.0,
+      "std_population": 410.78583227759935,
+      "min": 930.0,
+      "max": 2110.0,
+      "median": 1135.0,
+      "episode": 2250,
+      "steps": 1377486
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1760.0,
+        "length": 985,
+        "emulator_frames": 3937,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1100.0,
+        "length": 761,
+        "emulator_frames": 3041,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 930.0,
+        "length": 651,
+        "emulator_frames": 2601,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1050.0,
+        "length": 579,
+        "emulator_frames": 2313,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1240.0,
+        "length": 755,
+        "emulator_frames": 3017,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2110.0,
+        "length": 1041,
+        "emulator_frames": 4161,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1020.0,
+        "length": 779,
+        "emulator_frames": 3113,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1170.0,
+        "length": 605,
+        "emulator_frames": 2417,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 960.0,
+        "length": 573,
+        "emulator_frames": 2289,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1910.0,
+        "length": 1025,
+        "emulator_frames": 4097,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1490.0,
+      "std_population": 437.6985263854563,
+      "min": 740.0,
+      "max": 2340.0,
+      "median": 1435.0,
+      "episode": 2500,
+      "steps": 1553786
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1380.0,
+        "length": 787,
+        "emulator_frames": 3145,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1160.0,
+        "length": 665,
+        "emulator_frames": 2657,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1490.0,
+        "length": 603,
+        "emulator_frames": 2409,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 740.0,
+        "length": 475,
+        "emulator_frames": 1897,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1600.0,
+        "length": 653,
+        "emulator_frames": 2609,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1120.0,
+        "length": 747,
+        "emulator_frames": 2985,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1290.0,
+        "length": 967,
+        "emulator_frames": 3865,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1910.0,
+        "length": 1017,
+        "emulator_frames": 4065,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 2340.0,
+        "length": 969,
+        "emulator_frames": 3873,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1870.0,
+        "length": 699,
+        "emulator_frames": 2793,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1331.0,
+      "std_population": 193.51744107444165,
+      "min": 950.0,
+      "max": 1510.0,
+      "median": 1415.0,
+      "episode": 2750,
+      "steps": 1734470
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1030.0,
+        "length": 491,
+        "emulator_frames": 1961,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1390.0,
+        "length": 745,
+        "emulator_frames": 2977,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1440.0,
+        "length": 837,
+        "emulator_frames": 3345,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 950.0,
+        "length": 571,
+        "emulator_frames": 2281,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1500.0,
+        "length": 909,
+        "emulator_frames": 3633,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1240.0,
+        "length": 593,
+        "emulator_frames": 2369,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1480.0,
+        "length": 1017,
+        "emulator_frames": 4065,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1270.0,
+        "length": 767,
+        "emulator_frames": 3065,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1510.0,
+        "length": 719,
+        "emulator_frames": 2873,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1500.0,
+        "length": 799,
+        "emulator_frames": 3193,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1461.0,
+      "std_population": 384.6933843985363,
+      "min": 780.0,
+      "max": 2040.0,
+      "median": 1505.0,
+      "episode": 3000,
+      "steps": 1922708
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 780.0,
+        "length": 567,
+        "emulator_frames": 2265,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1800.0,
+        "length": 893,
+        "emulator_frames": 3569,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1700.0,
+        "length": 889,
+        "emulator_frames": 3553,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1070.0,
+        "length": 641,
+        "emulator_frames": 2561,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1760.0,
+        "length": 845,
+        "emulator_frames": 3377,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2040.0,
+        "length": 781,
+        "emulator_frames": 3121,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1510.0,
+        "length": 1003,
+        "emulator_frames": 4009,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1500.0,
+        "length": 1001,
+        "emulator_frames": 4001,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 950.0,
+        "length": 503,
+        "emulator_frames": 2009,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1500.0,
+        "length": 869,
+        "emulator_frames": 3473,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1587.0,
+      "std_population": 386.0064766296027,
+      "min": 1110.0,
+      "max": 2600.0,
+      "median": 1550.0,
+      "episode": 3250,
+      "steps": 2123454
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1380.0,
+        "length": 863,
+        "emulator_frames": 3449,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1190.0,
+        "length": 569,
+        "emulator_frames": 2273,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1110.0,
+        "length": 685,
+        "emulator_frames": 2737,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1490.0,
+        "length": 921,
+        "emulator_frames": 3681,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1540.0,
+        "length": 931,
+        "emulator_frames": 3721,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1560.0,
+        "length": 691,
+        "emulator_frames": 2761,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1650.0,
+        "length": 1245,
+        "emulator_frames": 4977,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1720.0,
+        "length": 881,
+        "emulator_frames": 3521,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1630.0,
+        "length": 735,
+        "emulator_frames": 2937,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 2600.0,
+        "length": 841,
+        "emulator_frames": 3361,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1736.0,
+      "std_population": 341.70747723747576,
+      "min": 1180.0,
+      "max": 2360.0,
+      "median": 1685.0,
+      "episode": 3500,
+      "steps": 2336258
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1630.0,
+        "length": 925,
+        "emulator_frames": 3697,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1450.0,
+        "length": 717,
+        "emulator_frames": 2865,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1730.0,
+        "length": 865,
+        "emulator_frames": 3457,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1420.0,
+        "length": 745,
+        "emulator_frames": 2977,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1750.0,
+        "length": 939,
+        "emulator_frames": 3753,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2070.0,
+        "length": 953,
+        "emulator_frames": 3809,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1180.0,
+        "length": 749,
+        "emulator_frames": 2993,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 2130.0,
+        "length": 1515,
+        "emulator_frames": 6057,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1640.0,
+        "length": 795,
+        "emulator_frames": 3177,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 2360.0,
+        "length": 1097,
+        "emulator_frames": 4385,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1789.0,
+      "std_population": 472.15357670995144,
+      "min": 610.0,
+      "max": 2530.0,
+      "median": 1815.0,
+      "episode": 3750,
+      "steps": 2564076
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1600.0,
+        "length": 867,
+        "emulator_frames": 3465,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1750.0,
+        "length": 993,
+        "emulator_frames": 3969,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 2530.0,
+        "length": 1073,
+        "emulator_frames": 4289,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1620.0,
+        "length": 993,
+        "emulator_frames": 3969,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1830.0,
+        "length": 809,
+        "emulator_frames": 3233,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2160.0,
+        "length": 833,
+        "emulator_frames": 3329,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1990.0,
+        "length": 911,
+        "emulator_frames": 3641,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 2000.0,
+        "length": 1057,
+        "emulator_frames": 4225,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1800.0,
+        "length": 849,
+        "emulator_frames": 3393,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 610.0,
+        "length": 423,
+        "emulator_frames": 1689,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 1800.0,
+      "std_population": 516.5075023656481,
+      "min": 1430.0,
+      "max": 3260.0,
+      "median": 1600.0,
+      "episode": 4000,
+      "steps": 2799464
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1490.0,
+        "length": 877,
+        "emulator_frames": 3505,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1550.0,
+        "length": 823,
+        "emulator_frames": 3289,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 3260.0,
+        "length": 999,
+        "emulator_frames": 3993,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1830.0,
+        "length": 1007,
+        "emulator_frames": 4025,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1540.0,
+        "length": 817,
+        "emulator_frames": 3265,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1660.0,
+        "length": 967,
+        "emulator_frames": 3865,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1540.0,
+        "length": 791,
+        "emulator_frames": 3161,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1430.0,
+        "length": 859,
+        "emulator_frames": 3433,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1650.0,
+        "length": 1095,
+        "emulator_frames": 4377,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 2050.0,
+        "length": 863,
+        "emulator_frames": 3449,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 2201.0,
+      "std_population": 780.3262138362392,
+      "min": 1580.0,
+      "max": 4340.0,
+      "median": 1925.0,
+      "episode": 4250,
+      "steps": 3028084
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 4340.0,
+        "length": 1383,
+        "emulator_frames": 5529,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1960.0,
+        "length": 987,
+        "emulator_frames": 3945,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 1890.0,
+        "length": 931,
+        "emulator_frames": 3721,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 2320.0,
+        "length": 1333,
+        "emulator_frames": 5329,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1580.0,
+        "length": 1055,
+        "emulator_frames": 4217,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2630.0,
+        "length": 1005,
+        "emulator_frames": 4017,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 2200.0,
+        "length": 1045,
+        "emulator_frames": 4177,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1760.0,
+        "length": 877,
+        "emulator_frames": 3505,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1610.0,
+        "length": 1007,
+        "emulator_frames": 4025,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1720.0,
+        "length": 715,
+        "emulator_frames": 2857,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 2191.0,
+      "std_population": 454.7625754171071,
+      "min": 1560.0,
+      "max": 2810.0,
+      "median": 2030.0,
+      "episode": 4500,
+      "steps": 3273808
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1560.0,
+        "length": 737,
+        "emulator_frames": 2945,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 1850.0,
+        "length": 1059,
+        "emulator_frames": 4233,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 2810.0,
+        "length": 1141,
+        "emulator_frames": 4561,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1780.0,
+        "length": 965,
+        "emulator_frames": 3857,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 2180.0,
+        "length": 1017,
+        "emulator_frames": 4065,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 1790.0,
+        "length": 833,
+        "emulator_frames": 3329,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1880.0,
+        "length": 1047,
+        "emulator_frames": 4185,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 2730.0,
+        "length": 1109,
+        "emulator_frames": 4433,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 2620.0,
+        "length": 1179,
+        "emulator_frames": 4713,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 2710.0,
+        "length": 1057,
+        "emulator_frames": 4225,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 2349.0,
+      "std_population": 635.3022902524435,
+      "min": 1750.0,
+      "max": 3750.0,
+      "median": 2180.0,
+      "episode": 4750,
+      "steps": 3524288
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 3750.0,
+        "length": 1085,
+        "emulator_frames": 4337,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 2180.0,
+        "length": 1121,
+        "emulator_frames": 4481,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 2180.0,
+        "length": 985,
+        "emulator_frames": 3937,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 2660.0,
+        "length": 1215,
+        "emulator_frames": 4857,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1830.0,
+        "length": 1141,
+        "emulator_frames": 4561,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2180.0,
+        "length": 961,
+        "emulator_frames": 3841,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 1770.0,
+        "length": 977,
+        "emulator_frames": 3905,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 1960.0,
+        "length": 929,
+        "emulator_frames": 3713,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1750.0,
+        "length": 917,
+        "emulator_frames": 3665,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 3230.0,
+        "length": 1023,
+        "emulator_frames": 4089,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  },
+  {
+    "summary": {
+      "episodes": 10,
+      "mean": 2148.0,
+      "std_population": 406.32007088008834,
+      "min": 1570.0,
+      "max": 2820.0,
+      "median": 2090.0,
+      "episode": 5000,
+      "steps": 3777202
+    },
+    "episodes": [
+      {
+        "index": 0,
+        "seed": 1000000,
+        "reward": 1570.0,
+        "length": 829,
+        "emulator_frames": 3313,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 1,
+        "seed": 1000001,
+        "reward": 2220.0,
+        "length": 923,
+        "emulator_frames": 3689,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 2,
+        "seed": 1000002,
+        "reward": 2820.0,
+        "length": 1059,
+        "emulator_frames": 4233,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 3,
+        "seed": 1000003,
+        "reward": 1860.0,
+        "length": 941,
+        "emulator_frames": 3761,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 4,
+        "seed": 1000004,
+        "reward": 1710.0,
+        "length": 961,
+        "emulator_frames": 3841,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 5,
+        "seed": 1000005,
+        "reward": 2200.0,
+        "length": 797,
+        "emulator_frames": 3185,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 6,
+        "seed": 1000006,
+        "reward": 2520.0,
+        "length": 1003,
+        "emulator_frames": 4009,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 7,
+        "seed": 1000007,
+        "reward": 2730.0,
+        "length": 909,
+        "emulator_frames": 3633,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 8,
+        "seed": 1000008,
+        "reward": 1980.0,
+        "length": 887,
+        "emulator_frames": 3545,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      },
+      {
+        "index": 9,
+        "seed": 1000009,
+        "reward": 1870.0,
+        "length": 1205,
+        "emulator_frames": 4817,
+        "terminated": true,
+        "truncated": false,
+        "lives": 0
+      }
+    ]
+  }
+]

@@ -1,5 +1,21 @@
 # MLDS
 
+## Assignment 2
+
+- **[Code, results, models, and reproduction instructions](assignment2/README.md)**
+- [CartPole project](assignment2/mlds_assignment2_cartpole/README.md)
+- [MsPacman project](assignment2/mlds_assignment2_mspacman/README.md)
+
+| Environment | Mean original episode reward | Population SD | Evaluation episodes |
+|---|---:|---:|---:|
+| CartPole-v1 | 499.176 | 13.738305 | 500 |
+| MsPacman-v5 | 2,033.58 | 486.316135 | 500 |
+
+CartPole reached 500 steps in 497/500 games. MsPacman evaluation used 1% random
+actions; all reported scores use original game points. Both models were selected
+using separate validation seeds. The training code, saved models, numerical
+evidence, and plotting code are included.
+
 ## Assignment 1
 
 - **[Final report (PDF)](assignment1/mlds_assignment1_submission/ASSIGNMENT1_REPORT.pdf)**

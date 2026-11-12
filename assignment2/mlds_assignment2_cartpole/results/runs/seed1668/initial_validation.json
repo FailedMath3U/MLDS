@@ -1,0 +1,13 @@
+{
+  "episodes": 20,
+  "mean": 9.4,
+  "std_population": 0.7348469228349533,
+  "std_sample": 0.7539370349250519,
+  "min": 8.0,
+  "max": 11.0,
+  "median": 9.0,
+  "successes_500": 0,
+  "success_rate_500": 0.0,
+  "physical_failures": 20,
+  "time_limits": 0
+}

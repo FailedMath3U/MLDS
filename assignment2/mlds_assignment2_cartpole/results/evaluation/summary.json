@@ -1,0 +1,19 @@
+{
+  "episodes": 500,
+  "mean": 499.176,
+  "std_population": 13.738304990063364,
+  "std_sample": 13.752063936916887,
+  "min": 205.0,
+  "max": 500.0,
+  "median": 500.0,
+  "successes_500": 497,
+  "success_rate_500": 0.994,
+  "physical_failures": 3,
+  "time_limits": 497,
+  "checkpoint": "runs/symmetric_ddqn_seed1668/best.pt",
+  "checkpoint_step": 190000,
+  "checkpoint_sha256": "0b7ce61f74bb63759e87220ef5aa2509a0a3ab81d88959079f998c0ba89232e7",
+  "seed_start": 9000000,
+  "greedy": true,
+  "gamma": 0.95
+}

@@ -1,0 +1,140 @@
+{
+  "preprocessing": {
+    "expected_signed_pixels": [
+      127,
+      -128,
+      -68,
+      -128
+    ],
+    "observed_signed_pixels": [
+      127,
+      -128,
+      -68,
+      -128
+    ],
+    "shape": [
+      88,
+      80
+    ],
+    "passed": true
+  },
+  "replay": {
+    "passed": true,
+    "transitions": 23,
+    "capacity": 11,
+    "episode_lengths": [
+      2,
+      1,
+      7,
+      2,
+      8,
+      3
+    ],
+    "checks": "Four-frame history equals explicit stacks before/after resets and multiple ring wraps; terminal next frame retained."
+  },
+  "bellman": {
+    "expected": [
+      10.9,
+      1.0,
+      5.95
+    ],
+    "observed": [
+      10.899999618530273,
+      1.0,
+      5.949999809265137
+    ],
+    "cases": [
+      "continue",
+      "physical game over",
+      "external time limit"
+    ]
+  },
+  "environment": {
+    "id": "ALE/MsPacman-v5",
+    "actions": 9,
+    "action_meanings": [
+      "NOOP",
+      "UP",
+      "RIGHT",
+      "LEFT",
+      "DOWN",
+      "UPRIGHT",
+      "UPLEFT",
+      "DOWNRIGHT",
+      "DOWNLEFT"
+    ],
+    "stack_shape": [
+      4,
+      88,
+      80
+    ],
+    "initial_lives": 3,
+    "frameskip": 4,
+    "sticky_action_probability": 0.25
+  },
+  "random_games": {
+    "summary": {
+      "episodes": 3,
+      "mean": 303.3333333333333,
+      "std_population": 54.365021434333634,
+      "min": 230.0,
+      "max": 360.0,
+      "median": 320.0
+    },
+    "episodes": [
+      {
+        "seed": 7000000,
+        "reward": 360.0,
+        "length": 677,
+        "lives": 0,
+        "terminated": true,
+        "truncated": false
+      },
+      {
+        "seed": 7000001,
+        "reward": 320.0,
+        "length": 501,
+        "lives": 0,
+        "terminated": true,
+        "truncated": false
+      },
+      {
+        "seed": 7000002,
+        "reward": 230.0,
+        "length": 527,
+        "lives": 0,
+        "terminated": true,
+        "truncated": false
+      }
+    ],
+    "changing_frames": 1658,
+    "life_losses": 9,
+    "nonterminal_life_losses": 6,
+    "interpretation": "One episode is a full game, not one life. Nonzero scores and changing images verify actual gameplay."
+  },
+  "repeatability": {
+    "action_count": 100,
+    "seed": 314159,
+    "identical": true,
+    "sha256": "d28c004f3f99ce8879c6afba0d40bc8582d67f08066334c57b9a50fced674a22"
+  },
+  "gpu_learning": {
+    "initial_controlled_loss": 0.5199891328811646,
+    "final_controlled_loss": 0.004751430358737707,
+    "production_updates": 140,
+    "last_real_replay_update": {
+      "loss": 0.029051851481199265,
+      "td_abs": 0.09871149063110352,
+      "gradient_norm": 0.0680408924818039
+    },
+    "online_parameters_changed": true,
+    "target_frozen_until_explicit_sync": true,
+    "synchronized_target_matches": true,
+    "checkpoint_max_q_difference": 0.0,
+    "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+    "visible_gpu_count": 1,
+    "peak_gpu_memory_bytes": 150388224
+  },
+  "seconds": 6.571065425872803,
+  "status": "PASS"
+}

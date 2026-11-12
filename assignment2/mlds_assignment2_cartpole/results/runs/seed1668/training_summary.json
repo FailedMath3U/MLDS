@@ -1,0 +1,19 @@
+{
+  "steps": 200316,
+  "episodes": 1668,
+  "updates": 49580,
+  "seconds": 168.59213638305664,
+  "final_validation": {
+    "episodes": 20,
+    "mean": 201.2,
+    "std_population": 10.929775843996069,
+    "std_sample": 11.213713409083212,
+    "min": 173.0,
+    "max": 219.0,
+    "median": 200.5,
+    "successes_500": 0,
+    "success_rate_500": 0.0,
+    "physical_failures": 20,
+    "time_limits": 0
+  }
+}

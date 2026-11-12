@@ -1,0 +1,100 @@
+{
+  "data_scope": "Saved logs and one diagnostic game; no new training or gameplay.",
+  "huber_bounds": {
+    "status": "PASS",
+    "records": 4961,
+    "batch": 32,
+    "formula": "h(m) <= mean(h(abs(error))) <= h(batch*m)/batch",
+    "tolerance": 1e-06,
+    "violations": [],
+    "minimum_lower_slack": 0.00013999695406969985,
+    "minimum_upper_slack": 0.004918019320674427,
+    "example": {
+      "episode": 5000,
+      "mean_absolute_error": 0.17504703998565674,
+      "loss": 0.026142310351133347,
+      "lower": 0.015320733103870054,
+      "upper": 0.15942203998565674
+    }
+  },
+  "q_lower_bound": {
+    "status": "PASS",
+    "assumption": "All rewards in the task are nonnegative.",
+    "recorded_reward_support": [
+      0.0,
+      10.0,
+      50.0,
+      200.0,
+      400.0
+    ],
+    "predictions": 9243,
+    "minimum": 1.3262135982513428,
+    "maximum": 28.76536750793457,
+    "violations": 0,
+    "limitation": "Only this diagnostic game has all nine predictions saved at every decision."
+  },
+  "dueling_implications": {
+    "status": "PASS",
+    "assumption": "True Q values are in [0,100] and the dueling head uses mean centering.",
+    "implied_value_minimum": 1.5829329755571153,
+    "implied_value_maximum": 28.519502215915256,
+    "theoretical_centered_advantage_magnitude_bound": 88.88888888888881,
+    "observed_centered_advantage_maximum_magnitude": 1.4079094462924537,
+    "scope": "Values and centered advantages are inferred from saved Q vectors. This is a consequence of the Q bounds, not an independent measurement of either output head."
+  },
+  "exploration": {
+    "status": "DESCRIPTIVE",
+    "decisions": 1027,
+    "epsilon": 0.01,
+    "unique_greedy_action_at_every_recorded_state": true,
+    "conditional_non_greedy_probability_if_unique": 0.008888888888888889,
+    "random_branch_count": 9,
+    "non_greedy_count": 7,
+    "random_branch_greedy_count": 2,
+    "nonrandom_action_errors": 0,
+    "observed_greedy_fraction": 0.9931840311587147,
+    "scope": "The formula is conditional on each state. Counts fluctuate. Episode length is a stopping time, so no fixed-length binomial p-value is claimed."
+  },
+  "frame_bound": {
+    "status": "PASS",
+    "records": 5710,
+    "formula": "4*decisions - 3 <= emulator_frames <= 4*decisions",
+    "violations": [],
+    "observed_offsets": [
+      3
+    ]
+  },
+  "finite_event_return_bound": {
+    "status": "PASS",
+    "scope": "Realized discounted clipped returns, not network Q predictions.",
+    "formula": "gamma**(H-K)*(1-gamma**K)/(1-gamma) <= G <= (1-gamma**K)/(1-gamma)",
+    "suffixes": 1027,
+    "violations": [],
+    "initial_events": 133,
+    "initial_upper": 73.72874127497711,
+    "initial_return": 14.669571883381364
+  },
+  "calibration_observation": {
+    "status": "DESCRIPTIVE",
+    "initial_q": 1.920275092124939,
+    "initial_realized_discounted_return": 14.669571883381364,
+    "mean_absolute_difference": 3.389840184308073,
+    "mean_difference": -0.7576948821378235,
+    "scope": "One stochastic trajectory, generated with epsilon=.01. This is not a test that Q must equal each realized return."
+  },
+  "gradient_logging": {
+    "maximum_logged_norm": 10.858962059020996,
+    "records_above_10": 2,
+    "meaning": "The trainer records the norm returned by clip_grad_norm_, which is the norm before clipping.",
+    "limitation": "The post-clipping norm is not logged, so its bound cannot be independently checked from these records."
+  },
+  "input_sha256": {
+    "source/mspacman_dqn.py": "d86d82ed69ab053995578866b5add94b7aa0ed4436a4e53be4d6cabe9484293b",
+    "results/seed1668/config.json": "00c9f73493e777b813f2c36c789bb0728cb728ebbeef604ab2718c53c6d88f9d",
+    "results/seed1668/training.csv": "db3bd38d02c694aa93f1714251ff2806e516261aaa088ea1a61adc23c39ebf71",
+    "results/report_checks/diagnostic_trajectory.json": "e90f5738a233053bd21b4c9b2c68989b4adb4cd86fae3045cf8d2bb82564f5cb",
+    "results/evaluation/episodes.json": "f3f00f49b4e7d94bb904dcf46fb740dd690ea0ac0094dbd22ff0b0d4e791d3da",
+    "results/seed1668/initial_validation.json": "31a56af1ca578db2a085026b71dd282549ed50022606cdb89c2edbf1b79b5a7f",
+    "results/seed1668/validation_history.json": "8db71c4ff9d011abca663e5c81a0cc3e2bb7abab1cebab9c94efd4647f07b1a1"
+  }
+}

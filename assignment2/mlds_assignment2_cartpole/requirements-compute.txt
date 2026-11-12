@@ -1,0 +1,5 @@
+# Deepdish environment used for training (Python 3.12).
+# Existing torch build: 2.14.0+cu130. Install CUDA wheels appropriate to your system.
+torch==2.14.0
+gymnasium==1.2.2
+numpy==2.5.3

@@ -1,0 +1,16 @@
+{
+  "episodes": 2,
+  "mean": 265.0,
+  "std_population": 55.0,
+  "min": 210.0,
+  "max": 320.0,
+  "median": 265.0,
+  "checkpoint": "runs/smoke/best.pt",
+  "checkpoint_episode": 6,
+  "checkpoint_steps": 3666,
+  "epsilon": 0.01,
+  "gamma": 0.99,
+  "seed_start": 8000000,
+  "env": "ALE/MsPacman-v5",
+  "checkpoint_sha256": "a152f663535dde8e20c0ce10b14406ea4fed8cb1d494e5026b6e4038437550d1"
+}

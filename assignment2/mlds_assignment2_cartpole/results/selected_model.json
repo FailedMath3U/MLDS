@@ -1,0 +1,7 @@
+{
+  "run": "symmetric_ddqn_seed1668",
+  "checkpoint": "best.pt",
+  "checkpoint_step": 190000,
+  "selection_basis": "Highest mean over 20 fixed validation seeds, then minimum reward; retain earliest checkpoint on exact ties. Final evaluation seeds were unused during selection.",
+  "checkpoint_sha256": "0b7ce61f74bb63759e87220ef5aa2509a0a3ab81d88959079f998c0ba89232e7"
+}

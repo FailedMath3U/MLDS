@@ -1,0 +1,17 @@
+{
+  "phase": "training_complete",
+  "episode": 5000,
+  "episodes_requested": 5000,
+  "steps": 3777202,
+  "updates": 939301,
+  "replay_size": 200000,
+  "seconds": 10899.869508981705,
+  "steps_per_second": 346.5364421768784,
+  "pid": 1134262,
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "visible_gpu_count": 1,
+  "last_100_mean": 2210.1,
+  "loss": 0.026142310351133347,
+  "td_abs": 0.17504703998565674,
+  "gradient_norm": 2.211493730545044
+}

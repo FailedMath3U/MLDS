@@ -1,0 +1,88 @@
+{
+  "seed": 6000000,
+  "epsilon": 0.01,
+  "steps": 1027,
+  "score": 2220.0,
+  "positive_reward_events": 133,
+  "sum_recorded_rewards": 2220.0,
+  "life_loss_events": [
+    {
+      "step": 507,
+      "from_lives": 3,
+      "to_lives": 2,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "step": 839,
+      "from_lives": 2,
+      "to_lives": 1,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "step": 1027,
+      "from_lives": 1,
+      "to_lives": 0,
+      "terminated": true,
+      "truncated": false
+    }
+  ],
+  "first_rewards": [
+    {
+      "step": 68,
+      "reward": 10.0,
+      "cumulative_score": 10.0
+    },
+    {
+      "step": 71,
+      "reward": 10.0,
+      "cumulative_score": 20.0
+    },
+    {
+      "step": 74,
+      "reward": 10.0,
+      "cumulative_score": 30.0
+    },
+    {
+      "step": 78,
+      "reward": 10.0,
+      "cumulative_score": 40.0
+    },
+    {
+      "step": 81,
+      "reward": 10.0,
+      "cumulative_score": 50.0
+    },
+    {
+      "step": 85,
+      "reward": 10.0,
+      "cumulative_score": 60.0
+    },
+    {
+      "step": 88,
+      "reward": 10.0,
+      "cumulative_score": 70.0
+    },
+    {
+      "step": 92,
+      "reward": 10.0,
+      "cumulative_score": 80.0
+    },
+    {
+      "step": 96,
+      "reward": 10.0,
+      "cumulative_score": 90.0
+    },
+    {
+      "step": 99,
+      "reward": 10.0,
+      "cumulative_score": 100.0
+    }
+  ],
+  "greedy_action_checks": 1018,
+  "random_action_count": 9,
+  "snapshots": 13,
+  "preprocessing_matches_live_stack": true,
+  "changing_decisions": 1009
+}

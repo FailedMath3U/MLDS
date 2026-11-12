@@ -1,0 +1,6 @@
+# Recorded Deepdish environment: Python 3.12.6, one CUDA device.
+# Actual torch build was 2.14.0+cu130; choose the appropriate CUDA wheel index.
+torch==2.14.0
+gymnasium==1.2.2
+ale-py==0.11.2
+numpy==2.5.3

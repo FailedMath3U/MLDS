@@ -29,3 +29,11 @@ assignment1/mlds_assignment1_pong/references/*trace*
 assignment1/mlds_assignment1_pong/runs/*/evaluation/*_trace*
 assignment1/mlds_assignment1_pong/status.json
 assignment1/mlds_assignment1_pong/summary.json
+
+# Assignment 2 written reports remain local.
+assignment2/Assignment2_User_Report/
+assignment2/**/*.tex
+assignment2/**/*.pdf
+!assignment2/**/figures/*.pdf
+assignment2/**/*Report.md
+assignment2/**/Mathematical_Checks.md

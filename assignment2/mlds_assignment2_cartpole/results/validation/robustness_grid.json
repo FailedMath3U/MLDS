@@ -1,0 +1,1335 @@
+{
+  "xs": [
+    -1.8,
+    -1.35,
+    -0.9,
+    -0.44999999999999996,
+    0.0,
+    0.44999999999999996,
+    0.9000000000000001,
+    1.3499999999999999,
+    1.8
+  ],
+  "thetas": [
+    -0.18,
+    -0.135,
+    -0.09,
+    -0.044999999999999984,
+    0.0,
+    0.044999999999999984,
+    0.09000000000000002,
+    0.135,
+    0.18
+  ],
+  "episodes": [
+    {
+      "index": 0,
+      "seed": 5000000,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.201793670654297,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 1,
+      "seed": 5000001,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.102561950683594,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 2,
+      "seed": 5000002,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.129199981689453,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 3,
+      "seed": 5000003,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.078771591186523,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 4,
+      "seed": 5000004,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.109392166137695,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 5,
+      "seed": 5000005,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.113086700439453,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 6,
+      "seed": 5000006,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.07884979248047,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 7,
+      "seed": 5000007,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.122806549072266,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 8,
+      "seed": 5000008,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.119203567504883,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        -0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 9,
+      "seed": 5000009,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.179729461669922,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 10,
+      "seed": 5000010,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.134050369262695,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 11,
+      "seed": 5000011,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.087966918945312,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 12,
+      "seed": 5000012,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.073989868164062,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 13,
+      "seed": 5000013,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.10102081298828,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 14,
+      "seed": 5000014,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.14933204650879,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 15,
+      "seed": 5000015,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.08283233642578,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 16,
+      "seed": 5000016,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.14317512512207,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 17,
+      "seed": 5000017,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.1251277923584,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        -0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 18,
+      "seed": 5000018,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.20226287841797,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 19,
+      "seed": 5000019,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.147533416748047,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 20,
+      "seed": 5000020,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.12665367126465,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 21,
+      "seed": 5000021,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.083370208740234,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 22,
+      "seed": 5000022,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.094423294067383,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 23,
+      "seed": 5000023,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.162399291992188,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 24,
+      "seed": 5000024,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.11172866821289,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 25,
+      "seed": 5000025,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.10913848876953,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 26,
+      "seed": 5000026,
+      "reward": 75.0,
+      "length": 75,
+      "discounted_return": 19.573125323082433,
+      "initial_max_q": 20.13224220275879,
+      "terminated": true,
+      "truncated": false,
+      "initial_state": [
+        1.8,
+        0.0,
+        -0.09,
+        0.0
+      ]
+    },
+    {
+      "index": 27,
+      "seed": 5000027,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.180334091186523,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 28,
+      "seed": 5000028,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.16214942932129,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 29,
+      "seed": 5000029,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.175270080566406,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 30,
+      "seed": 5000030,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.06600570678711,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 31,
+      "seed": 5000031,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.08538246154785,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 32,
+      "seed": 5000032,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.13252067565918,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 33,
+      "seed": 5000033,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.13942527770996,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 34,
+      "seed": 5000034,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.118732452392578,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 35,
+      "seed": 5000035,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.141834259033203,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        -0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 36,
+      "seed": 5000036,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.170429229736328,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 37,
+      "seed": 5000037,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.132415771484375,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 38,
+      "seed": 5000038,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.203521728515625,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 39,
+      "seed": 5000039,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.0968017578125,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 40,
+      "seed": 5000040,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.05889129638672,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 41,
+      "seed": 5000041,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.0968017578125,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 42,
+      "seed": 5000042,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.203521728515625,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 43,
+      "seed": 5000043,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.132415771484375,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 44,
+      "seed": 5000044,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.170429229736328,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "index": 45,
+      "seed": 5000045,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.141834259033203,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 46,
+      "seed": 5000046,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.118732452392578,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 47,
+      "seed": 5000047,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.13942527770996,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 48,
+      "seed": 5000048,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.13252067565918,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 49,
+      "seed": 5000049,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.08538246154785,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 50,
+      "seed": 5000050,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.06600570678711,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 51,
+      "seed": 5000051,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.175270080566406,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 52,
+      "seed": 5000052,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.16214942932129,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 53,
+      "seed": 5000053,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.180334091186523,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        0.044999999999999984,
+        0.0
+      ]
+    },
+    {
+      "index": 54,
+      "seed": 5000054,
+      "reward": 75.0,
+      "length": 75,
+      "discounted_return": 19.573125323082433,
+      "initial_max_q": 20.13224220275879,
+      "terminated": true,
+      "truncated": false,
+      "initial_state": [
+        -1.8,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 55,
+      "seed": 5000055,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.10913848876953,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 56,
+      "seed": 5000056,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.11172866821289,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 57,
+      "seed": 5000057,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.162399291992188,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 58,
+      "seed": 5000058,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.094423294067383,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 59,
+      "seed": 5000059,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.083370208740234,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 60,
+      "seed": 5000060,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.12665367126465,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 61,
+      "seed": 5000061,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.147533416748047,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 62,
+      "seed": 5000062,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.20226287841797,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        0.09000000000000002,
+        0.0
+      ]
+    },
+    {
+      "index": 63,
+      "seed": 5000063,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.1251277923584,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 64,
+      "seed": 5000064,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.14317512512207,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 65,
+      "seed": 5000065,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.08283233642578,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 66,
+      "seed": 5000066,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.14933204650879,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 67,
+      "seed": 5000067,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.10102081298828,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 68,
+      "seed": 5000068,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.073989868164062,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 69,
+      "seed": 5000069,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.087966918945312,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 70,
+      "seed": 5000070,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.134050369262695,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 71,
+      "seed": 5000071,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.179729461669922,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        0.135,
+        0.0
+      ]
+    },
+    {
+      "index": 72,
+      "seed": 5000072,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.119203567504883,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.8,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 73,
+      "seed": 5000073,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.122806549072266,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -1.35,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 74,
+      "seed": 5000074,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.07884979248047,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.9,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 75,
+      "seed": 5000075,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.113086700439453,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        -0.44999999999999996,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 76,
+      "seed": 5000076,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.109392166137695,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.0,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 77,
+      "seed": 5000077,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.078771591186523,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.44999999999999996,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 78,
+      "seed": 5000078,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.129199981689453,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        0.9000000000000001,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 79,
+      "seed": 5000079,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.102561950683594,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.3499999999999999,
+        0.0,
+        0.18,
+        0.0
+      ]
+    },
+    {
+      "index": 80,
+      "seed": 5000080,
+      "reward": 500.0,
+      "length": 500,
+      "discounted_return": 19.999999999854516,
+      "initial_max_q": 20.201793670654297,
+      "terminated": false,
+      "truncated": true,
+      "initial_state": [
+        1.8,
+        0.0,
+        0.18,
+        0.0
+      ]
+    }
+  ],
+  "summary": {
+    "episodes": 81,
+    "mean": 489.5061728395062,
+    "std_population": 65.95268102765466,
+    "std_sample": 66.36360513428843,
+    "min": 75.0,
+    "max": 500.0,
+    "median": 500.0,
+    "successes_500": 79,
+    "success_rate_500": 0.9753086419753086,
+    "physical_failures": 2,
+    "time_limits": 79
+  }
+}
